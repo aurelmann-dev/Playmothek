@@ -14,7 +14,17 @@
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
+        {{ form_row(registrationForm.age) }}
+        {{ form_row(registrationForm.pseudo) }}
+
+    <div hidden>
+        {{ form_row(registrationForm.name, {value: 'name'}) }}
+        {{ form_row(registrationForm.firstname, {value: 'firstname'}) }}
+    </div>
+    
+
         {{ form_row(registrationForm.agreeTerms) }}
+
 
         <button type="submit" class="btn">Register</button>
     {{ form_end(registrationForm) }}

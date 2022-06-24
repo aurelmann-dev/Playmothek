@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users index
+{% endblock %}
+
+{% block body %}
+	<h1>Users index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Roles</th>
+				<th>Password</th>
+				<th>IsVerified</th>
+				<th>Name</th>
+				<th>Firstname</th>
+				<th>Age</th>
+				<th>Job</th>
+				<th>Postalcode</th>
+				<th>City</th>
+				<th>Pseudo</th>
+				<th>Playmo_icon</th>
+				<th>actions</th>
+				<th>page attribuée</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for user in users %}
+				{# {{dump(user)}} #}
+				{# {% for user in annuaireUserList['directoryList']%} #}
+					<tr><td>{{ user.id }}
+					</td><td>{{ user.email }}
+					</td><td>{{ user.roles ? user.roles|json_encode : '' }}
+					</td><td>{{ user.password }}
+					</td><td>{{ user.isVerified ? 'Yes' : 'No' }}
+					</td><td>{{ user.name }}
+					</td><td>{{ user.firstname }}
+					</td><td>{{ user.age }}
+					</td><td>{{ user.job }}
+					</td><td>{{ user.postalcode }}
+					</td><td>{{ user.city }}
+					</td><td>{{ user.pseudo }}
+					</td><td>
+					</td>
+						<td><a href="{{ path('app_users_show', {id: user.id}) }}"> Voir</a>
+						<a href="{{ path('app_admin_user_edit', {id: user.id}) }}">Modifier</a>
+						<a href="{{ path('app_admin_user_delete', {id: user.id}) }}">Supprimer</a>
+					</td>
+					<td></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+
+	</table>
+
+	<button>
+		<a href="{{ path('app_admin_user_new') }}">Nouveau user</a>
+	</button>
+{% endblock %}

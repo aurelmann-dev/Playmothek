@@ -1,41 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Hello MainController!
+{% endblock %}
 
 {% block body %}
 
 
-<div class="">
-    MA PAGE ACCUEIL
-</div>
-{# ~Identity of the logged in user~ #}
-  {% if app.user %}
-        <div class="">
-            <p>Connecté en tant que {{ app.user.userIdentifier }}</p>           
-        </div>
-    {% endif %}
+	<div class="">
+		MA PAGE ACCUEIL
+	</div>
+	{# ~Identity of the logged in user~ #}
+	{% if app.user %}
+		<div class="">
+			<p>Connecté en tant que
+				{{ app.user.userIdentifier }}</p>
+			<a href="{{ path('app_users_connected', {'id': app.user.id}) }}">Voir ma page</a>
+		</div>
+	{% endif %}
 
-{# ~Message success verify email user register~ #}
-<div>
-    {% for message in app.flashes('verify_email_success') %}
-        <div class="" role="alert">{{ message }}</div>
-    {% endfor %}
-</div>
+	{# ~Message success verify email user register~ #}
+	<div>
+		{% for message in app.flashes('verify_email_success') %}
+			<div class="" role="alert">{{ message }}</div>
+		{% endfor %}
+	</div>
 
-<div class="flex">
-    {# ~Link user register~ #}
-    <div>
-        <button><a href="{{ path('app_register') }}">S'incrire</a></button>
-    </div>
-    
-    {# ~Link user login~ #}
-    <div>
-        <button><a href="{{ path('app_login') }}">Connexion</a></button>
-    </div>
+	<div
+		class="flex">
+		{# ~Link user register~ #}
+		<div>
+			<button>
+				<a href="{{ path('app_register') }}">S'incrire</a>
+			</button>
+		</div>
 
-     {# ~Link user login~ #}
-    <div>
-        <button><a href="{{ path('app_logout') }}">Déconnexion</a></button>
-    </div>
-</div>
+		{# ~Link user login~ #}
+		<div>
+			<button>
+				<a href="{{ path('app_login') }}">Connexion</a>
+			</button>
+		</div>
+
+		{# ~Link user login~ #}
+		<div>
+			<button>
+				<a href="{{ path('app_logout') }}">Déconnexion</a>
+			</button>
+		</div>
+	</div>
+
+	<hr>
+
+		<h2>Gestion</h2>
+		<div>
+			{# ~Link user login~ #}
+			<div>
+				<button>
+					<a href="{{ path('app_admin_users') }}">Liste Users</a>
+				</button>
+                <button>
+					<a href="{{ path('app_admin_pages') }}">Liste Pages</a>
+				</button>
+			</div>
+		</div>
+
+
+
 {% endblock %}

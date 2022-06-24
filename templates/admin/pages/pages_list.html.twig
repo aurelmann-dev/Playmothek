@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin | Gestion Pages{% endblock %}
+
+{% block body %}
+{# ~Message delete page~ #}
+	<div>
+		{% for message in app.flashes('delete_page') %}
+			<div class="" role="alert">{{ message }}</div>
+		{% endfor %}
+	</div>
+
+PAGE ADMIN LISTE DES PAGES
+<h1>Gestion des pages collectionneurs</h1>
+{# {{dump(pages)}} #}
+<table>
+    <thead>
+        <tr>
+            <th>N°_ig</th>
+            <th>Prénom User</th>
+            <th>Nom User</th>
+            <th>Id_user</th>
+            <th>Contenu</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for page in pages %}
+           {# {{dump(page.user)}} #}
+            <tr>
+                <td>{{page.id}}</td>
+                <td>{{page.user.firstname}}</td>
+                <td>{{page.user.name}}</td>
+                <td>{{page.user.id}}</td>
+                <td>{{page.presentation}}</td>
+                <td><a href="{{ path('app_admin_page_edit', {id: page.id}) }}">Modifier</a></td>
+                <td><a href="{{ path('app_admin_page_delete', {id: page.id}) }}">Supprimer</a></td>
+            </tr>
+        {% endfor %}        
+    </tbody>
+</table>
+
+<button><a href="{{ path('app_admin_page_new') }}">Nouvelle page</a></button>
+
+{% endblock %}
