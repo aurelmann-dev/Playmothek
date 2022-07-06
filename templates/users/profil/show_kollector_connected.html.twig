@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page Collectionneur
+{% endblock %}
+
+
+{% block body %}
+	<main>
+		PAGE PROFIL COLLECTIONNEUR
+		{% for message in app.flashes('update_profil') %}
+			<div>{{ message }}</div>
+		{% endfor %}
+		{% for message in app.flashes('password_success') %}
+			<div>{{ message }}</div>
+		{% endfor %}
+
+		<div>
+			<p>Page de
+				{{ app.user.firstname}}
+				{{ app.user.name}}</p>
+		</div>
+        <br>
+
+        <div>
+        {{app.user.getBirthday()}} ans
+        </div>
+    <br>
+		<div>
+			<p>Présentation :
+				{{app.user.page.presentation}}</p>
+
+                <br>
+			<p>Réseau :
+				{{app.user.page.networks}}</p>
+		</div>
+<br>
+
+		<div>
+			<button>
+				<a href="{{ path('app_profil_edit', {'id': app.user.id}) }}">Modifier mes infos perso</a>
+			</button>
+			<button>
+				<a href="{{ path('app_actu_edit', {'page': app.user.page.id}) }}">Modifier mon actu</a>
+			</button>
+			<button>
+				<a href="{{ path('app_password_edit', {'id': app.user.id}) }}">Modifier le mot de passe</a>
+			</button>
+		</div>
+
+		<div>
+			<h2>Derniéres photos ajoutées :</h2>
+			<p>Nombre de photos : {{ app.user.page.images|length }}</p> 
+			{% for image in app.user.page.images %}
+					     <img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+					   {% endfor %}
+
+
+		</div>
+	</main>
+{% endblock %}

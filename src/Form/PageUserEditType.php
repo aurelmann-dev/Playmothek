@@ -20,22 +20,34 @@ class PageUserEditType extends AbstractType
         $builder
             ->add('presentation')
             ->add('networks')
-            ->add('user', EntityType::class, [
-                'class' => Users::class,
-                // choix par id + pseudo
-                'choice_label' => 'page_for_user',
-                // enregistrement de l'id
-                'query_builder' => function (UsersRepository $user_id) {
-                    return $user_id->createQueryBuilder('id')
-                        ->orderBy('id.firstname', 'ASC');
-                }
-            ])
+            // ->add('user', EntityType::class, [
+            //     'class' => Users::class,
+            //     // choix par id + pseudo
+            //     'choice_label' => 'page_for_user',
+            //     // enregistrement de l'id
+            //     'query_builder' => function (UsersRepository $user_id) {
+            //         return $user_id->createQueryBuilder('id')
+            //             ->orderBy('id.firstname', 'ASC');
+            //     }
+            // ])
 
-            ->add('picture', FileType::class, [
+            ->add('images', FileType::class,[
                 'required' => false,
-                'data_class' => null
-                // 'multiple' => true,
-              
+                'data_class' => null,
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
+                // 'contraints' => [
+                //     new File([
+                //         'maxSize' => '10M',
+                //         'mimeTypes' => [
+                //             'image/jpg',
+                //             'image/jpeg',
+                //             'image/png'
+                //         ],
+                //         'mimeTypesMessage' => 'error Image'
+                //     ])
+                // ]
             ])
 
             ->add('Valider', SubmitType::class);

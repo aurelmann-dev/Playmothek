@@ -47,20 +47,39 @@ class PagesType extends AbstractType
                 }
             ])
 
-            ->add('picture', FileType::class, [
+            // ->add('picture', FileType::class, [
+            //     'data_class' => null,
+            //     // 'multiple' => true,
+            //     'constraints' => [
+            //         new File([                        
+            //             'maxSize' => '10M',
+            //             'mimeTypes' => [
+            //                 'image/jpg',
+            //                 'image/jpeg',
+            //                 'image/png',
+            //             ],
+            //             'mimeTypesMessage' => 'error image',
+            //         ])
+            //     ],
+            // ])
+
+            #~Field Images not mapped BDD~
+            ->add('images', FileType::class,[
                 'data_class' => null,
-                // 'multiple' => true,
-                'constraints' => [
-                    new File([                        
-                        'maxSize' => '10M',
-                        'mimeTypes' => [
-                            'image/jpg',
-                            'image/jpeg',
-                            'image/png',
-                        ],
-                        'mimeTypesMessage' => 'error image',
-                    ])
-                ],
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
+                // 'contraints' => [
+                //     new File([
+                //         'maxSize' => '10M',
+                //         'mimeTypes' => [
+                //             'image/jpg',
+                //             'image/jpeg',
+                //             'image/png'
+                //         ],
+                //         'mimeTypesMessage' => 'error Image'
+                //     ])
+                // ]
             ])
 
             ->add('Valider', SubmitType::class, [

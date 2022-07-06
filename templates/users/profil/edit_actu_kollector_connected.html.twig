@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page Collectionneur
+{% endblock %}
+
+{% block body %}
+	<main>
+
+
+		MODIFICATION ACTU COLLECTIONNEUR
+
+		<div>
+			<p>Modif Page de
+				{{ app.user.firstname}}
+				{{ app.user.name}}</p>
+		</div>
+
+		<div>
+			{{ form(form)}}
+
+				{# {{app.user.page.presentation}} #}
+
+				{% for image in app.user.page.images %}
+					<form action="{{ path('app_kollector_connected_delete_img', {id: image.id}) }}" method="POST">
+						<input type="hidden" name="token" value="{{ csrf_token('delete-image') }}">
+						{{image.id}}
+						<img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+						<button type="submit">Supprimer</button>
+					</form>
+				{% endfor %}
+
+			</div>
+		</main>
+	{% endblock %}

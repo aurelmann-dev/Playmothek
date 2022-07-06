@@ -34,7 +34,7 @@ class UsersController extends AbstractController
     {
         $user = new Users();
         $form = $this->createForm(UsersType::class, $user);
-        
+
         unset($form['page']);
         $form->handleRequest($request);
 
@@ -46,7 +46,7 @@ class UsersController extends AbstractController
                     $form->get('password')->getData()
                 )
             );
-          
+
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -56,7 +56,9 @@ class UsersController extends AbstractController
             'form' => $form->createView(),
             'user' => $user
         ]);
+        //~adminController => connexion admin=> create new user (vistor or kollector) = OK~
     }
+
 
     // ~Admin only => See all users~
     #[Route('/', name: 'app_admin_users')]
@@ -66,21 +68,24 @@ class UsersController extends AbstractController
             'users' => $usersRepository->findAll(),
             'pages' => $pagesRepository->findAll()
         ]);
+        //~adminController => connexion admin=>  list all users (vistor + kollector) = OK~
     }
 
-        // ~Admin only => See kollectors only~
-        #[Route('/kollectors', name: 'app_admin_kollectors')]
-        public function usersKollectors(UsersRepository $usersRepository, PagesRepository $pagesRepository): Response
-        {
-            $kollectors = $usersRepository->findByRole("ROLE_KOLLECTOR");
-            // dd($kollectors);
+    // ~Admin only => See kollectors only~
+    #[Route('/kollectors', name: 'app_admin_kollectors')]
+    public function usersKollectors(UsersRepository $usersRepository, PagesRepository $pagesRepository): Response
+    {
+        $kollectors = $usersRepository->findByRole("ROLE_KOLLECTOR");
+        // dd($kollectors);
 
-            return $this->render('admin/users/kollectors_list.html.twig', [
-                'kollectors' => $kollectors,
-                'users' => $usersRepository->findAll(),
-                'pages' => $pagesRepository->findAll()
-            ]);
-        }
+        return $this->render('admin/users/kollectors_list.html.twig', [
+            'kollectors' => $kollectors,
+            'users' => $usersRepository->findAll(),
+            'pages' => $pagesRepository->findAll()
+        ]);
+         //~adminController => connexion admin=>  list all kollectors only = OK~
+    }
+
 
     // ~Admin only => Show one user~
     #[Route('/{id}', name: 'app_users_show', methods: ['GET'])]
@@ -89,12 +94,13 @@ class UsersController extends AbstractController
         return $this->render('admin/users/show.html.twig', [
             'user' => $user,
         ]);
+        //~adminController => connexion admin=> infos one kollector = OK~
     }
 
     // ~Admin only => Edit a user~
     #[Route('/edit/{id}', name: 'app_admin_user_edit')]
     public function editUser(Request $request, UsersRepository $usersRepository, Users $user)
-    { 
+    {
         $form = $this->createForm(EditUserAdminType::class, $user);
         $form->handleRequest($request);
         // dd($user);
@@ -107,16 +113,20 @@ class UsersController extends AbstractController
             'form' => $form->createView(),
             'user' => $user,
         ]);
+        //~adminController => connexion admin=> edit one kollector = OK~
     }
 
     // ~Admin only => Delete a user~
     #[Route('/delete/{id}', name: 'app_admin_user_delete')]
     public function deleteUser(UsersRepository $usersRepository, Users $user, Request $request)
     {
+        // if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
         $usersRepository->remove($user, true);
+        // }
 
         $this->addFlash('delete_user', 'User supprimé.');
 
         return $this->redirectToRoute('app_admin_users');
     }
+     //~adminController => connexion admin=> delete one kollector = OK~
 }

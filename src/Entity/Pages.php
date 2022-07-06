@@ -25,8 +25,16 @@ class Pages
     #[ORM\OneToOne(inversedBy: 'page', targetEntity: Users::class, cascade: ['persist'])]
     private $user;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $Picture;
+    // #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    // private $Picture;
+
+    #[ORM\OneToMany(mappedBy: 'pages', targetEntity: Images::class, orphanRemoval: true, cascade:['persist'])]
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
    
     public function getId(): ?int
@@ -70,14 +78,44 @@ class Pages
         return $this;
     }
 
-    public function getPicture(): ?string
+    // public function getPicture(): ?string
+    // {
+    //     return $this->Picture;
+    // }
+
+    // public function setPicture(?string $Picture): self
+    // {
+    //     $this->Picture = $Picture;
+
+    //     return $this;
+    // }
+
+    /**
+     * @return Collection<int, Images>
+     */
+    public function getImages(): Collection
     {
-        return $this->Picture;
+        return $this->images;
     }
 
-    public function setPicture(?string $Picture): self
+    public function addImage(Images $image): self
     {
-        $this->Picture = $Picture;
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setPages($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getPages() === $this) {
+                $image->setPages(null);
+            }
+        }
 
         return $this;
     }

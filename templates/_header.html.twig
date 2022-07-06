@@ -25,7 +25,7 @@
         {# ~Menu KOLLECTOR~ #} 
          {% elseif is_granted('ROLE_KOLLECTOR')%}
             <ol class="menu_kollector">
-			<li><a href="{{ path('app_kollectors') }}" title="Voir la liste des collectionneurs">Collectionneurs</a></li>
+			<li><a href="{{ path('app_kollectors_list') }}" title="Voir la liste des collectionneurs">Collectionneurs</a></li>
 			{# <li><a href="#">Dioramas</a></li> #}		   
             <li class="dropdown"><a href="#">Infos pratiques</a>             
                 {# ~Sub Menu~ #}
@@ -36,13 +36,13 @@
                     </ul>
             </li>
 			<li><a href="#" title="Histoire de Playmobil">La marque officielle</a></li>
-            <li><a href="{{ path('app_users_connected', {'id': app.user.id}) }}" title="Compte collectionneur">Gérer ma page</a></li>
+            <li><a href="{{ path('app_kollector_connected', {'id': app.user.id}) }}" title="Compte collectionneur">Gérer ma page</a></li>
 		</ol>
 
         {# ~Menu USER~ #} 
         {% elseif is_granted('ROLE_USER')%}
             <ol class="menu_user">
-			<li><a href="{{ path('app_kollectors') }}" title="Voir la liste des collectionneurs">Collectionneurs</a></li>
+			<li><a href="{{ path('app_kollectors_list') }}" title="Voir la liste des collectionneurs">Collectionneurs</a></li>
 			{# <li><a href="#">Dioramas</a></li> #}		   
             <li class="dropdown"><a href="#">Infos pratiques</a>             
                 {# ~Sub Menu~ #}
@@ -58,7 +58,7 @@
         {# ~Menu OFFLINE~ #}
         {% else %}
         <ol class="menu_offline">
-			<li><a href="{{ path('app_kollectors') }}" title="Voir la liste des collectionneurs">Collectionneurs</a></li>
+			<li><a href="{{ path('app_kollectors_list') }}" title="Voir la liste des collectionneurs">Collectionneurs</a></li>
 			{# <li><a href="#">Dioramas</a></li> #}		   
             <li class="dropdown"><a href="#">Infos pratiques</a>               
                 {# ~Sub Menu~ #}

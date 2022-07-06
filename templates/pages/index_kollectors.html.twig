@@ -14,6 +14,7 @@
 			{% for page in pages %}
             <div class="card">
 				<p class="card_name">{{ page.user.firstname }} {{ page.user.name }}</p>
+				<a href="{{ path('app_kollector_view', {'id': page.id})}}">Voir sa page</a>
             </div>
 			{% endfor %}
 		

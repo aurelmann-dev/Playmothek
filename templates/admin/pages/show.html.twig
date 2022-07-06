@@ -19,9 +19,7 @@
 					{{page.user.id}}</h2>
 			</div>
 
-			<div>
-				<img src="{{ asset('upload_directory/' ~page.picture) }}" alt="Avatar {{playmo}}">
-			</div>
+	
 
 			<div class="info_perso_kollector">
 				<h3 class="info_perso">Informations personnelles :
@@ -65,7 +63,13 @@
 
 			{# ~Show Picture~ #}
 			<h2>Galerie Photos</h2>
-			{# {{dump(page.picture)}} #}
+		  {% for image in page.images %}
+            <div>
+                <img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+                {# <a href="{{ path('pages_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a> #}
+            </div>
+        {% endfor %}
+
 
 			<div class="btn_row_page">
 				<button class="btn_play">

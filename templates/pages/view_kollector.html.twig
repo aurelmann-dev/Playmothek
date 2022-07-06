@@ -1,28 +1,26 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Hello AdminController!
+{# ~PAGE PUBLIC~ #}
+{% block title %}
+	{{name_site}}
+	| 
 {% endblock %}
 
 {% block body %}
-	<main>
-		PAGE ADMIN
-		MODIFIER PAGE KOLLECTOR
+<main>
+<div>
+<p>N° page {{page.id}}</p>
+<h1>PAGE de {{page.user.firstname}}</h1>
 
-		{{ form(form) }}
-		</main>
+<p>{{page.presentation}}</p>
+ <a href="{{ path('app_kollectors_list') }}">Retour à la liste</a>
+</div>
+</main>
 
-         {# Verif route is pages edit #}
- 
-        <h2>Galerie photos :</h2>
-        {% for image in page.images %}
+   {% for image in page.images %}
             <div>
                 <img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
                 {# <a href="{{ path('pages_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a> #}
             </div>
         {% endfor %}
 
-
-	{% endblock %}
-
-
-
+{% endblock %}

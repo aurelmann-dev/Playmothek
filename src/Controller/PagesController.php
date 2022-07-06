@@ -3,31 +3,35 @@
 namespace App\Controller;
 
 use App\Entity\Pages;
+use App\Entity\Users;
 use App\Repository\PagesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/kollectors')]
+
 class PagesController extends AbstractController
 {
     //  ~Page liste kollectors~
-    #[Route('/', name: 'app_kollectors')]
+    #[Route('/kollectors/list', name: 'app_kollectors_list')]
     public function kollectorsList(PagesRepository $pagesRepository): Response
     {
-        return $this->render('pages/index.html.twig', [
+        return $this->render('pages/index_kollectors.html.twig', [
             'pages' => $pagesRepository->findAll()
         ]);
+          //~ => logout or connexion visitor => list all kollectors = OK~
     }
-    // (['created_at' => 'desc'])
 
-    //  ~Page one kollector~
-    #[Route('/{id}', name: 'app_page_kollector', methods: ['GET'])]
-    public function pageKollector(Pages $page): Response
-    {
-        return $this->render('pages/show.html.twig', [
-            'page' => $page,
-        ]);
-    }
+     //  ~Page one kollector~
+     #[Route('kollector/view/{id}', name: 'app_kollector_view', methods: ['GET'])]
+     public function kollectorView(Pages $page): Response
+     {
+         return $this->render('pages/view_kollector.html.twig', [
+             'page' => $page,
+         ]);
+         //~ => logout or connexion visitor => page one kollector = OK~~
+     }
+    
 }

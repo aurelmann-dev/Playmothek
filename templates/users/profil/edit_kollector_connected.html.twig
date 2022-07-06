@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page Collectionneur{% endblock %}
+
+{% block body %}
+   <main>
+   
+
+MODIFICATION PROFIL COLLECTIONNEUR CONNECTE
+
+<div>
+<p>Modif Page de {{ app.user.firstname}} {{ app.user.name}}</p>
+</div>
+
+<div>
+{{ form(form)}}
+</div>
+
+	<div>
+			<h2>Derniéres photos ajoutées :</h2>
+			<p>Nombre de photos : {{ app.user.page.images|length }}</p> 
+			{% for image in app.user.page.images %}
+					     <img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+					   {% endfor %}
+
+
+		</div>
+   </main>
+{% endblock %}
+
+
+
