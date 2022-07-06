@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pictures
+{% endblock %}
+
+{% block body %}
+	<main class="main_admin_pages">
+		<div class="container_admin_pages">
+
+			<h2>{{admin}}</h2>
+			<h3>Page Collectionneur N°
+				{{ page.id }}</h3>
+
+			<div class="info_kollector">
+				<h2 class="name_kollector">Page de
+					{{page.user.firstname}}
+					{{page.user.name}}
+					- N° id :
+					{{page.user.id}}</h2>
+			</div>
+
+			<div>
+				<img src="{{ asset('upload_directory/' ~page.picture) }}" alt="Avatar {{playmo}}">
+			</div>
+
+			<div class="info_perso_kollector">
+				<h3 class="info_perso">Informations personnelles :
+				</h3>
+				<ol>
+					<li>Nom :
+						{{page.user.name}}</li>
+					<li>Prénom :
+						{{page.user.firstname}}</li>
+					<li>Date de naissance :
+						{{page.user.age|date('d/m/Y')}}
+					</li>
+					<li>Âge :
+						{{page.user.getBirthday()}}
+						ans</li>
+					<li>Adresse mail :
+						{{page.user.email}}</li>
+					<li>Profession :
+						{{page.user.job}}</li>
+					<li>Lieu habitation :
+						{{page.user.postalcode}}
+						{{page.user.city}}</li>
+				</ol>
+			</div>
+			<br>
+			<hr>
+			<br>
+			<h3 class="presentation">Informations personnelles :
+			</h3>
+			<p>
+				{{page.presentation}}</p>
+			<br>
+			<hr>
+			<br>
+			<h4>Actualité sur les réseaux :</h4>
+			<p>
+				{{page.networks}}</p>
+			<br>
+			<hr>
+			<br>
+
+			{# ~Show Picture~ #}
+			<h2>Galerie Photos</h2>
+			{# {{dump(page.picture)}} #}
+
+			<div class="btn_row_page">
+				<button class="btn_play">
+					<a href="{{ path('app_admin_pages') }}">Retour</a>
+				</button>
+				<button class="btn_play">
+					<a href="{{ path('app_admin_page_edit', {id: page.id}) }}">Modifier</a>
+				</button>
+
+				{{ include('admin/pages/_delete_form.html.twig') }}
+			</div>
+
+
+		</div>
+	</main>
+
+
+{% endblock %}

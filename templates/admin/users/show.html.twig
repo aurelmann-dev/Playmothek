@@ -1,75 +1,93 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Users{% endblock %}
+{% block title %}
+	{{name_site}}
+	| Admin_FicheUser
+{% endblock %}
 
 {% block body %}
-    <h1>Users</h1>
+	<main class="main_admin ">
+		<div class="container_admin show">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>IsVerified</th>
-                <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ user.name }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ user.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>{{ user.age }}</td>
-            </tr>
-            <tr>
-                <th>Job</th>
-                <td>{{ user.job }}</td>
-            </tr>
-            <tr>
-                <th>Postalcode</th>
-                <td>{{ user.postalcode }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ user.city }}</td>
-            </tr>
-            <tr>
-                <th>Pseudo</th>
-                <td>{{ user.pseudo }}</td>
-            </tr>
-            <tr>
-                <th>Playmo_icon</th>
-                <td>{{ user.playmoIcon }}</td>
-            </tr>
-        </tbody>
-    </table>
+			<h2>{{admin}}</h2>
+			<h3>Fiche informations de
+				<span>
+					{{user.pseudo}}</span>
+			</h3>
 
-    <a href="{{ path('app_admin_users') }}">back to list</a>
+			<div class="role_statut">
 
-    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
+				<h4>Statut inscrit :</h4>
 
-    {{ include('admin/users/_delete_form.html.twig') }}
+				{% for roles in user.roles %}
+					{% if roles == 'ROLE_ADMIN' %}
+						<p>
+							Administrateur</p>
+					{% endif %}
+
+					{% if roles == 'ROLE_KOLLECTOR' %}
+						<p>Collectionneur</p>
+					{% endif %}
+				{% endfor %}
+			</div>
+
+			<div class="content_info">
+				<img src="{{ asset('images/admin/face.png') }}" alt="Dessin {{playmo}}">
+
+
+				<div class="titled">
+					<h4>Prénom / Nom :</h4>
+					<br>
+					<h4>Adresse mail :</h4>
+					<br>
+					<br>
+					<h4>Date de naissance :
+					</h4>
+					<br>
+					<h4>Code postal :</h4>
+					<h4>Ville :</h4>
+					<h4>Profession :</h4>
+					<br>
+					<h4>Page attribuée :</h4>
+				</div>
+
+				<div class="informations">
+					<p>{{ user.firstname}}
+						{{ user.name}}</p>
+					<br>
+					<p>{{ user.email}}</p>
+					<p>(adresse vérifiée :
+						{{ user.isVerified ? 'Oui' : 'Non' }})</p>
+					<br>
+					<p>{{ user.age|date('d/m/Y') }}</p>
+					<br>
+					<p>{{ user.postalcode}}</p>
+					<p>{{ user.city}}</p>
+					<p>{{ user.job}}</p>
+					<br>
+					{% if user.page.id  is defined%}
+						<p>{{user.page.id}}</p>
+					{% else %}
+						<p>Non</p>
+					{% endif %}
+				</div>
+			</div>
+
+
+			<div class="btn_page">
+				<button class="btn_play">
+					<a href="{{ path('app_admin_users') }}">Retour</a>
+				</button>
+				<button class="btn_play">
+					<a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">Modifier</a>
+				</button>
+				{{ include('admin/users/_delete_form.html.twig') }}
+			</div>
+
+
+		</div>
+
+	</main>
 
 
 {% endblock %}
-
-
-

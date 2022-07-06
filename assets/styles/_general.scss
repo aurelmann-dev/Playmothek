@@ -1,11 +1,66 @@
-// Reset
-*{
+.bug {
+    color: red;
+}
+
+/*  .--.      .-'.      .--.     .--
+:::::.\:: GENERAL RESET ::/:::
+'      `--'      `.-'      `--' */
+* {
     margin: 0;
     padding: 0;
     list-style: none;
     text-decoration: none;
 }
 
-body{
- font-family: 'calibri';
+body {
+    font-family: 'text';
+    font-weight: 600;
 }
+
+main {
+    padding-top: 6em;
+    padding-bottom: 4em;
+}
+
+li,
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a {
+    font-family: 'text';
+    font-weight: 600;
+}
+.flex{
+    display: flex;
+    align-items: baseline;
+}
+
+/*  .--.      .-'.      .--.     .--
+:::::.\:: FONTS-FAMILY ::/:::
+'      `--'      `.-'      `--' */
+.logo {
+    font-family: 'playmo';
+}
+
+.title {
+    font-family: 'title';
+}
+
+.text {
+    font-family: 'text';
+    font-weight: 600;
+}
+
+.notation {
+    font-family: 'notation';
+}
+
+/*  .--.      .-'.      .--.     .--
+:::::.\:: REGISTERED TRADEMARK ::/:::
+'      `--'      `.-'      `--' */
+.registered {
+    font-size: 12px;
+}
+

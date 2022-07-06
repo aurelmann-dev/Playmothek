@@ -1,0 +1,93 @@
+.footer {
+    @include flex($just: space-around);
+    background-color: $grun;
+    padding-top: 3em;
+    padding-bottom: 2em;
+    position: relative;
+
+    .networks {
+        font-size: 40px;
+
+        i {
+            margin-left: 0.5em;
+        }
+    }
+
+    .footer_left,
+    .footer_middle,
+    .footer_right {
+        text-align: center;
+        line-height: 2.5em;
+    }
+}
+
+.footer_middle a:hover {
+    text-decoration: underline;
+    font-weight: 900;
+}
+
+// ~Black line~
+.footer::before {
+    content: '';
+    background-color: black;
+    height: 20px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 2px 2px gray;
+}
+
+
+/*
+    _\/_                   |                _\/_
+    /o\\              \       /           //o\
+       |                   .---.               |
+    __|_______   --  /     \  --    ___|__
+    `~^~^~^ RESPONSIVE ~^~^~^`
+*/
+@media screen and (max-width:1280px) {
+    .footer {
+        padding: 3em;
+    }
+}
+
+@media screen and (max-width:1215px) {
+    .footer_middle {
+        .internal_rules {
+            display: flex;
+            flex-direction: column;
+
+            .escape {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:995px) {
+    .footer_right {
+        display: none;
+    }
+
+    .footer_left::after {
+        content: "2022 Playmothek.fr | Tous droits réservés ©";
+        position: absolute;
+        bottom: 0;
+        left: 5em;
+        font-family: 'text';
+        font-weight: 600;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .footer {
+       font-size: 14px;
+    }
+}
+    @media screen and (max-width:650px) {
+        .networks {
+           font-size: 20px;
+        }
+
+}

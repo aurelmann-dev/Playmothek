@@ -30,17 +30,14 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
-
-    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Pages::class, orphanRemoval: true)]
-    private $page;
-
-    #[ORM\Column(type: 'string', length: 100)]
+  
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $firstname;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'date')]
     private $age;
 
     #[ORM\Column(type: 'string', length: 100, nullable: true)]
@@ -55,25 +52,22 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 100)]
     private $pseudo;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $playmo_icon;
+    // #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    // private $playmo_icon;
 
-    #[ORM\ManyToMany(targetEntity: Pages::class, mappedBy: 'favoris')]
-    private $favoris;
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Pages::class, cascade: ['persist', 'remove'])]
+    /*
+    *@ORM\JoinColumn(nullable=true)
+    */
+   
 
-    // #[ORM\OneToMany(mappedBy: 'user', targetEntity: Pictures::class, orphanRemoval: true)]
-    // private $pictures;
+    private $page;
 
-    public function __construct()
-    {
-        $this->pictures = new ArrayCollection();
-        $this->favoris = new ArrayCollection();
-    }
-    
-    public function __toString()
-    {
-        return $this->getUserIdentifier();
-    }
+
+    // public function __toString()
+    // {
+    //     return $this->getUserIdentifier();
+    // }
 
     public function getId(): ?int
     {
@@ -157,28 +151,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPage(): ?Pages
-    {
-        return $this->page;
-    }
-
-    public function setPage(?Pages $page): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($page === null && $this->page !== null) {
-            $this->page->setUser(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($page !== null && $page->getUser() !== $this) {
-            $page->setUser($this);
-        }
-
-        $this->page = $page;
-
-        return $this;
-    }
-
+   
     public function getName(): ?string
     {
         return $this->name;
@@ -203,12 +176,12 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAge(): ?int
+    public function getAge(): ?\DateTimeInterface
     {
         return $this->age;
     }
 
-    public function setAge(int $age): self
+    public function setAge(\DateTimeInterface $age): self
     {
         $this->age = $age;
 
@@ -263,72 +236,53 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPlaymoIcon(): ?string
-    {
-        return $this->playmo_icon;
-    }
-
-    public function setPlaymoIcon(?string $playmo_icon): self
-    {
-        $this->playmo_icon = $playmo_icon;
-
-        return $this;
-    }
-
-
-    // @return Collection<int, Pictures>
-
-    // public function getPictures(): Collection
+    // public function getPlaymoIcon(): ?string
     // {
-    //     return $this->pictures;
+    //     return $this->playmo_icon;
     // }
 
-    // public function addPicture(Pictures $picture): self
+    // public function setPlaymoIcon(?string $playmo_icon): self
     // {
-    //     if (!$this->pictures->contains($picture)) {
-    //         $this->pictures[] = $picture;
-    //         $picture->setUser($this);
-    //     }
+    //     $this->playmo_icon = $playmo_icon;
 
     //     return $this;
     // }
 
-    // public function removePicture(Pictures $picture): self
-    // {
-    //     if ($this->pictures->removeElement($picture)) {
-    //         set the owning side to null (unless already changed)
-    //         if ($picture->getUser() === $this) {
-    //             $picture->setUser(null);
-    //         }
-    //     }
-
-    //     return $this;
-    // }
-
-    /**
-     * @return Collection<int, Pages>
-     */
-    public function getFavoris(): Collection
+    public function getPage(): ?Pages
     {
-        return $this->favoris;
+        return $this->page;
     }
 
-    public function addFavori(Pages $favori): self
+    public function setPage(?Pages $page): self
     {
-        if (!$this->favoris->contains($favori)) {
-            $this->favoris[] = $favori;
-            $favori->addFavori($this);
+        // unset the owning side of the relation if necessary
+        if ($page === null && $this->page !== null) {
+            $this->page->setUser(null);
         }
+
+        // set the owning side of the relation if necessary
+        if ($page !== null && $page->getUser() !== $this) {
+            $page->setUser($this);
+        }
+
+        $this->page = $page;
 
         return $this;
     }
 
-    public function removeFavori(Pages $favori): self
+    #~Function call 'id + pseudo' in creation page/user~
+    public function getPageForUser()
     {
-        if ($this->favoris->removeElement($favori)) {
-            $favori->removeFavori($this);
-        }
-
-        return $this;
+        $page_for_user = $this->id.' '.$this->pseudo;
+        return $page_for_user;
+        dd($page_for_user);
     }
+
+    // ~Calculate age from date of birth~
+    public function getBirthday()
+    {
+        $birthday = $this->age->diff(new \DateTime());
+        return $birthday->y;
+    }
+    
 }

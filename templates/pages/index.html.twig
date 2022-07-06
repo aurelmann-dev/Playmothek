@@ -1,38 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pages index{% endblock %}
+{% block title %}
+	{{name_site}}
+	| Kollectors
+{% endblock %}
 
 {% block body %}
-    <h1>Pages index</h1>
+	<main class="page_kollector_list">
+		<h2 class="title">Voici nos collectionneurs !</h2>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Networks</th>
-                <th>actions</th>
-                <th>user_id</th>
-                <th>user</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for page in pages %}
-            <tr>
-                <td>{{ page.id }}</td>
-                <td>{{ page.networks }}</td>
-               
-                <td>
-                    <a href="{{ path('app_pages_show', {'id': page.id}) }}">show</a>
-                    <a href="{{ path('app_pages_edit', {'id': page.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_pages_new') }}">Create new</a>
+		
+			{% for page in pages %}
+            <div class="card">
+				<p class="card_name">{{ page.user.firstname }} {{ page.user.name }}</p>
+            </div>
+			{% endfor %}
+		
+
+
+		{# <td>{{ page.user.age|date('d/m/Y') }}</td>
+		               
+		                <td>
+		                {% if is_granted('ROLE_USER') %}
+		                    <a href="{{ path('app_page_kollector', {'id': page.id}) }}">show</a>
+		                    {# <a href="{{ path('app_pages_edit', {'id': page.id}) }}">edit</a> #}
+	{# {% else %}
+	                    <p>connection demandée</p>
+	                    {% endif %}
+	                </td>
+	            </tr>
+	        {% else %}
+	            <tr> #}
+		{# <td colspan="4">no records found</td> #}
+
+
+		{# <a href="{{ path('app_pages_new') }}">Create new</a> #}
+	</main>
 {% endblock %}

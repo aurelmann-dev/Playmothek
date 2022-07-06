@@ -34,7 +34,7 @@
                 <td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.firstname }}</td>
-                <td>{{ user.age }}</td>
+                <td>{{ user.age|date('d/m/Y') }}</td>
                 <td>{{ user.job }}</td>
                 <td>{{ user.postalcode }}</td>
                 <td>{{ user.city }}</td>

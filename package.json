@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "node-sass": "^7.0.1",
+        "react-multiple-image-uploader": "^1.0.3",
         "sass-loader": "^12.6.0"
     }
 }

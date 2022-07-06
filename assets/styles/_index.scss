@@ -1,0 +1,109 @@
+// ~Image welcome~
+.page_index {
+    text-align: center;
+
+    .img_welcome {
+        height: 150px;
+    }
+
+    .img_top_three {
+        margin-top: 2em;
+        height: 500px;
+    }
+
+    .jingle_index {
+        h2 {
+            margin-bottom: 2em;
+        }
+    }
+
+    .klicky:hover {
+        cursor: help;
+    }
+}
+
+.container_main {
+    @include flex($just: space-between);
+
+    .left_index {
+        margin-left: 0;
+        margin-right: 10em;
+
+        .img_left_index {
+            height: 360px;
+        }
+    }
+
+    .right_index {
+        margin-right: 0;
+
+        .img_right_index {
+            height: 400px;
+        }
+    }
+
+    .main_index {
+        padding-top: 3em;
+        text-align: justify;
+        line-height: 2em;
+
+        h4 {
+            text-align: center;
+        }
+
+        span a {
+            color: $bold;
+            font-weight: bold;
+        }
+    }
+
+    .good_visit {
+        margin-top: 3em;
+        text-align: center;
+    }
+
+}
+
+span a:hover {
+    text-decoration: underline;
+}
+
+
+/*
+    _\/_                   |                _\/_
+    /o\\              \       /           //o\
+       |                   .---.               |
+    __|_______   --  /     \  --    ___|__
+    `~^~^~^ RESPONSIVE ~^~^~^`
+*/
+@media screen and (max-width:1388px) {
+    .container_main .left_index {
+        margin-right: 1em;
+    }
+}
+
+@media screen and (max-width:1130px) {
+
+    .container_main .right_index .img_right_index,
+    .container_main .left_index .img_left_index {
+        height: 315px;
+    }
+}
+
+@media screen and (max-width:1020px) {
+    .container_main .main_index h4 {
+        text-align: left;
+    }
+}
+
+@media screen and (max-width:766px) {
+    .main_index text{
+        font-size: 12px;
+    }
+    .container_main .right_index .img_right_index{
+        display: none;
+    }
+    .container_main .left_index .img_left_index{
+        padding-right: 2em;
+    }
+}

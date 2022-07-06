@@ -1,69 +1,111 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!
+{% block title %}
+	{{name_site}}
+	| Accueil
 {% endblock %}
 
 {% block body %}
+	<main>
 
 
-	<div class="">
-		MA PAGE ACCUEIL
-	</div>
-	{# ~Identity of the logged in user~ #}
-	{% if app.user %}
-		<div class="">
-			<p>Connecté en tant que
-				{{ app.user.userIdentifier }}</p>
-			<a href="{{ path('app_users_connected', {'id': app.user.id}) }}">Voir ma page</a>
-		</div>
-	{% endif %}
-
-	{# ~Message success verify email user register~ #}
-	<div>
-		{% for message in app.flashes('verify_email_success') %}
-			<div class="" role="alert">{{ message }}</div>
-		{% endfor %}
-	</div>
-
-	<div
-		class="flex">
-		{# ~Link user register~ #}
+		{# ~Message success verify email user register~ #}
 		<div>
-			<button>
-				<a href="{{ path('app_register') }}">S'incrire</a>
-			</button>
+			{% for message in app.flashes('verify_email_success') %}
+				<div class="" role="alert">{{ message }}</div>
+			{% endfor %}
 		</div>
 
-		{# ~Link user login~ #}
-		<div>
-			<button>
-				<a href="{{ path('app_login') }}">Connexion</a>
-			</button>
-		</div>
+		{# ~Welcome message~ #}
+		<div class="page_index">
+			<div class="welcome">
+				<img class="img_welcome" src="{{ asset('images/welcome.png') }}" alt="Logo Playmothek bienvenue">
+			</div>
 
-		{# ~Link user login~ #}
-		<div>
-			<button>
-				<a href="{{ path('app_logout') }}">Déconnexion</a>
-			</button>
-		</div>
-	</div>
+			<p class="text klicky" title="Klickys ? Consultez la rubrique lexique !">Freunde der Klickys !*</p>
 
-	<hr>
+			<div class="top_three">
+				<img class="img_top_three" src="{{ asset('images/index/top_three.jpg') }}" title="Photo des trois premières figurines sortient en 1974" alt="Figurine des trois premiers Playmobil">
+			</div>
 
-		<h2>Gestion</h2>
-		<div>
-			{# ~Link user login~ #}
-			<div>
-				<button>
-					<a href="{{ path('app_admin_users') }}">Liste Users</a>
-				</button>
-                <button>
-					<a href="{{ path('app_admin_pages') }}">Liste Pages</a>
-				</button>
+			<div class="jingle_index">
+				<h2 class="title">La rencontre des collectionneurs de {{playmo}}<sup class="registered">®</sup></h2>
 			</div>
 		</div>
 
 
+		{# ~Presentation text~ #}
+		<div class="container_main">
 
+			{# ~picture left~ #}
+			<div class="left_index">
+				<img class="img_left_index" src="{{ asset('images/index/left_index.png') }}" alt="Photo Playmobil fille">
+			</div>
+
+			{# ~Text and links~ #}
+			<div class="main_index text">
+				<h4>Ici, que se passe-t-il ?!</h4>
+
+				<p>Ici, les collectionneurs de {{playmo}}<sup class="registered">®</sup> se présentent !</p>
+
+				<p>Ici, chaque collectionneur agrémente sa propre page comme il le souhaite, faisant ainsi découvrir sa collection et son actualité.
+					<span> <a href=""> (voir la section Collectionneurs)</a></span>
+				</p>
+
+				{# <p>ci, régulièrement, les collectionneurs sont sollicités pour participer aux concours de dioramas selon un thème imposé.
+						<span><a href=""> (voir la section Dioramas)</a></span>
+					</p> #}
+
+				<p>Ici, vous allez comprendre le jargon des passionnés de {{playmo}}<sup class="registered">®</sup>
+					<span><a href=""> (voir Lexique)</a></span>
+				</p>
+
+				<p>Ici, vous allez apprendre à estimer correctement vos petits Klickys ! <em>- exemple de jargon -</em>
+					<span><a href=""> (voir Infos pratiques)</a></span>
+				</p>
+
+				<p>Ici, vous allez devenir incollable sur l’histoire et la marque officielle {{playmo}}<sup class="registered">®</sup>
+					<span><a href=""> (voir la section Playmobil Officiel)</a></span>
+				</p>
+
+				<p>Mais surtout ici, c’est le plaisir des yeux, de l’imagination, du talent aussi et du partage de ceux qui ont gardés une âme d’enfant !!</p>
+
+				<p>Même si vous n’êtes pas collectionneur vous-même, vous pouvez profitez des galeries de nos collectionneurs, les contacter et même participer aux concours de dioramas de temps en temps.</p>
+
+				<p>Il vous suffit de <a href="">vous inscrire</a> en tant que visiteur et régalez-vous ! Si vous ne souhaitez pas vous inscrire vous n’aurez accès qu’à une partie limitée du site.</p>
+
+				<div class="good_visit">
+					<p>Bonne visite à tous & à toutes !</p>
+				</div>
+			</div>
+
+			{# ~picture right~ #}
+			<div class="right_index">
+				<img class="img_right_index" src="{{ asset('images/index/right_index.png') }}" alt="Photo Playmobil cavalière">
+			</div>
+		</div>
+
+
+		{# ~Identity of the logged in user~ #}
+		{# {% if app.user %}
+		<div class="">
+		<p>Connecté en tant que
+		{{ app.user.userIdentifier }}</p>
+		<a href="{{ path('app_users_connected', {'id': app.user.id}) }}">Voir ma page</a>
+		</div>
+		{% endif %}
+		
+		
+		<a href="{{ path('app_register') }}">S'incrire</a>
+		
+		<a href="{{ path('app_login') }}">Connexion</a>
+		
+		<a href="{{ path('app_logout') }}">Déconnexion</a>
+		
+		<a href="{{ path('app_admin_users') }}">Liste Users</a>
+		
+		<a href="{{ path('app_admin_pages') }}">Liste Pages</a> #}
+
+
+	</main>
 {% endblock %}

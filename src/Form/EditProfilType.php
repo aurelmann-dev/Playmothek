@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,7 +20,7 @@ class EditProfilType extends AbstractType
             
             ->add('name', TextType::class)
             ->add('firstname', TextType::class)
-            ->add('age', IntegerType::class)
+            ->add('age', BirthdayType::class)
             ->add('job', TextType::class, [
                 'required' => false
             ])
@@ -30,11 +31,10 @@ class EditProfilType extends AbstractType
                 'required' => false,
             ])
             
-
             ->add('pseudo', TextType::class, [
                
             ] )
-            ->add('playmo_icon')
+            // ->add('playmo_icon')
 
             ->add('Valider', SubmitType::class)
         ;

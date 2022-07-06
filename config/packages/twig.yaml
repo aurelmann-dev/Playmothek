@@ -1,6 +1,12 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
 
+    # Variables globales 
+    globals:
+            name_site: 'Playmothek'
+            playmo : 'Playmobil'
+            admin : 'Interface Administrateur'
+
 when@test:
     twig:
         strict_variables: true

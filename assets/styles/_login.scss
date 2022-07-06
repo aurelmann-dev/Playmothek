@@ -1,0 +1,226 @@
+/*  .--.    .-'.   ..--.     
+:::::.\:: LOGIN ::/:::
+'      `--'     `.-' */
+.main_login {
+    background-color: $playmo;
+}
+
+.container_login {
+    background-color: white;
+    @include flex($just: space-evenly);
+    margin-top: 40px;
+    margin: auto;
+    text-align: center;
+    width: 50%;
+    padding: 4em;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px black;
+
+    .img_login {
+        a {
+            text-decoration: underline;
+            font-weight: bold;
+            color: $bold;
+        }
+
+        img {
+            margin-top: 2em;
+            height: 400px;
+        }
+    }
+
+    .form_login,
+    .form_register {
+        h2 {
+            font-family: 'title';
+            padding-bottom: 1em;
+        }
+
+        h3 {
+            padding-bottom: 1em;
+        }
+
+        .inter_form {
+            @include flex($dir: column, $align: start);
+
+            input {
+                height: 25px;
+                width: 350px;
+                border-radius: 10px;
+                margin-top: 0.5em;
+                margin-bottom: 1.5em;
+                padding: 0.5em;
+                font-size: 16px;
+            }
+        }
+    }
+    input:focus{
+        box-shadow: 2px 2px 8px $bold;
+    }
+
+
+    .forgot {
+        margin-top: 1em;
+        text-decoration: underline;
+
+        a {
+            font-size: 14px;
+            color: $blau;
+        }
+    }
+}
+
+// ~Eye Password JS~
+.attach_input{
+    position: relative;
+    z-index: 0;
+}
+#eye_on {
+    position: absolute;
+    top: 24%;
+    right: 10%;
+    transition: all 0.2s;
+    color: $grun;
+    font-size: 20px;
+  }
+  #eye_off {
+    position: absolute;
+    top: 24%;
+    right: 10%;
+    transition: all 0.2s;
+    color: $violett;
+    font-size: 20px;
+  }
+ #eye_on:hover,
+ #eye_off:hover {
+    cursor: pointer;
+    color: $playmo;
+  }
+  
+.eye_display{
+    display: none;
+}
+
+
+/*  .--.    .-'.   ..--. .-'.   ..--.    
+:::::.\:: REGISTRATION ::/:::
+'      `--'     `.-' `--'     `.-' */
+.main_register {
+    background-color: $violett;
+
+    .container_register {
+        background-color: white;
+        margin-top: 40px;
+        margin: auto;
+        text-align: center;
+        width: 50%;
+        padding: 3em;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px black;
+
+        p {
+            margin-top: 1em;
+        }
+
+        #btn_on,
+        #btn_off {
+            border: none;
+            font-size: 16px;
+            color: $bold;
+            font-weight: bold;
+            background-color: white;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .form_register_visitor {
+            @include flex($just: space-evenly);
+            margin-top: 3em;
+            text-align: end;
+
+            .img_visitor {
+                height: 300px;
+            }
+            #registration_form_age,
+            #registration_form_pseudo,
+            #registration_form_email,
+            #registration_form_plainPassword,
+            #registration_form_name {
+                height: 25px;
+                width: 350px;
+                border-radius: 10px;
+                margin-top: 0.5em;
+                margin-bottom: 1.5em;
+                padding: 0.5em;
+                font-size: 16px;
+                margin-left: 1em;
+            }
+
+            #registration_form_age_day,
+            #registration_form_age_month,
+            #registration_form_age_year {
+                text-align: center;
+                height: 45px;
+                width: 90px;
+                border-radius: 10px;
+                margin-top: 0.5em;
+                margin-bottom: 1.5em;
+                padding: 0.5em;
+                font-size: 16px;
+                margin-left: 1em;
+            }
+            input:focus{
+                box-shadow: 2px 2px 8px $bold;
+            }
+
+
+            .group_input {
+                display: flex;
+                align-items: baseline;
+
+                p {
+                    margin-right: 2em;
+                }
+            }
+        }
+
+        h3 {
+            margin-top: 3em;
+            font-family: 'title';
+        }
+
+        .img_kollector {
+            height: 300px;
+        }
+
+        .form_register_kollector {
+            text-align: end;
+            margin-right: 24%;
+            margin-top: 2em;
+
+            #registration_form_name,
+            #registration_form_firstname,
+            #registration_form_job,
+            #registration_form_postalcode,
+            #registration_form_city {
+                height: 25px;
+                width: 350px;
+                border-radius: 10px;
+                margin-top: 0.5em;
+                margin-bottom: 1.5em;
+                padding: 0.5em;
+                font-size: 16px;
+                margin-left: 1em;
+            }
+
+        }
+
+        #registration_form_agreeTerms {
+            margin: 2em 0em 3em 1em;
+        }
+
+        .hidden_kollector {
+            display: none;
+        }
+    }
+}

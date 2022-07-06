@@ -6,9 +6,12 @@ use App\Entity\Pages;
 use App\Entity\Users;
 use App\Repository\UsersRepository;
 use Symfony\Component\Form\AbstractType;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PageUserEditType extends AbstractType
 {
@@ -17,8 +20,25 @@ class PageUserEditType extends AbstractType
         $builder
             ->add('presentation')
             ->add('networks')
-            ->add('user')
-        ;
+            ->add('user', EntityType::class, [
+                'class' => Users::class,
+                // choix par id + pseudo
+                'choice_label' => 'page_for_user',
+                // enregistrement de l'id
+                'query_builder' => function (UsersRepository $user_id) {
+                    return $user_id->createQueryBuilder('id')
+                        ->orderBy('id.firstname', 'ASC');
+                }
+            ])
+
+            ->add('picture', FileType::class, [
+                'required' => false,
+                'data_class' => null
+                // 'multiple' => true,
+              
+            ])
+
+            ->add('Valider', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

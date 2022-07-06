@@ -1,0 +1,350 @@
+/*  
+:::::.\:: INTERFACE ADMIN USERS ::/:::
+*/
+.main_admin {
+    background-color: brown;
+}
+
+.container_admin {
+    background-color: white;
+    margin-top: 40px;
+    margin: auto;
+    text-align: center;
+    width: 80%;
+    padding: 4em;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px black;
+}
+
+h2,
+h3 {
+    margin: auto;
+    font-family: 'title';
+    margin-bottom: 1em;
+}
+
+/* ~List all users~
+* Controller Admin UsersController
+* admin/users/users_list.html.twig
+*/
+.head_admin {
+    @include flex;
+
+    img {
+        width: 130px;
+    }
+}
+
+.title_admin {
+    margin: 0 20em 2em 20em;
+    text-align: center;
+}
+
+.gestion_admin {
+    text-align: center;
+    margin-bottom: 2em;
+
+    button {
+        margin-left: 2em;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    width: 98%;
+    margin: auto;
+
+    th {
+        background-color: $grun;
+        text-align: left;
+        padding: 6px;
+    }
+
+    td {
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+        padding: 6px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: $grun;
+    }
+}
+
+.action_crud {
+    padding-left: 1em;
+    font-size: 18px;
+}
+
+.action_crud:hover {
+    color: $violett;
+}
+
+.atta {
+    color: brown;
+}
+
+/* ~View one User~
+* Controller Admin UsersController
+* admin/users/show.html.twig
+*/
+.show {
+    width: 50%;
+
+    span {
+        color: $playmo
+    }
+
+    .role_statut {
+        @include flex;
+
+        h4 {
+            color: $bold;
+        }
+
+        p {
+            margin-left: 0.4em
+        }
+    }
+
+    .content_info {
+        @include flex;
+
+        img {
+            height: 400px;
+            margin-right: 3em;
+        }
+
+        .titled {
+            text-align: end;
+            margin-right: 1.5em;
+
+            h4 {
+                color: $bold;
+            }
+        }
+
+        .informations {
+            text-align: start;
+
+        }
+    }
+
+    .btn_page {
+        @include flex($just: space-between);
+        width: 45%;
+        margin-left: 45%;
+        margin-top: 2em;
+
+        .delete {
+            font-family: 'text';
+            font-size: 16px;
+            font-weight: 600;
+            margin-left: 1em;
+        }
+    }
+}
+
+/* ~Edit one user~
+* Controller Admin UsersController
+* admin/users/edit.html.twig
+*/
+#edit_user_admin_isVerified {
+    margin-left: 1em;
+    height: auto;
+    width: auto;
+}
+
+#edit_user_admin_age_month,
+#edit_user_admin_age_day,
+#edit_user_admin_age_year {
+    text-align: center;
+    height: 35px;
+    width: 78px;
+    border-radius: 10px;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+    padding: 0.5em;
+    font-size: 16px;
+    margin-left: 1em;
+}
+
+
+
+/* ~New users~
+* Controller Admin UsersController
+* admin/users/new.html.twig
+*/
+
+.container_new_user,
+.container_edit_user {
+    background-color: white;
+    margin-top: 40px;
+    margin: auto;
+    text-align: center;
+    width: 60%;
+    padding: 4em;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px black;
+
+    h2,
+    h3 {
+        margin: auto;
+        font-family: 'title';
+        margin-bottom: 1em;
+    }
+
+    .role_statut {
+        margin-top: 3em;
+
+        p {
+            margin-bottom: 1em;
+            font-size: 18px;
+            color: $bold;
+        }
+
+        #users_roles,
+        #edit_user_admin_roles {
+            display: flex;
+            justify-content: space-evenly;
+            width: 45%;
+            margin: auto;
+        }
+    }
+
+    .row_form {
+        @include flex;
+
+        .img_admin {
+            height: 400px;
+            padding-right: 3em;
+        }
+
+        .form_left {
+            margin-right: 3em;
+        }
+
+        .form_left,
+        .form_right {
+            text-align: end;
+            margin-top: 3em;
+            margin-bottom: 3em;
+
+            input {
+                height: 25px;
+                width: 248px;
+                border-radius: 10px;
+                margin-top: 0.5em;
+                margin-bottom: 1.5em;
+                padding: 0.5em;
+                font-size: 16px;
+                margin-left: 1em;
+            }
+
+            #users_age_month,
+            #users_age_day,
+            #users_age_year {
+                text-align: center;
+                height: 35px;
+                width: 78px;
+                border-radius: 10px;
+                margin-top: 0.5em;
+                margin-bottom: 1.5em;
+                padding: 0.5em;
+                font-size: 16px;
+                margin-left: 1em;
+            }
+
+            input:focus,
+            #users_age_month:focus,
+            #users_age_day:focus,
+            #users_age_year:focus {
+                box-shadow: 2px 2px 8px $bold;
+            }
+
+            input[type="file"] {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .btn_row {
+        @include flex($just: space-between);
+        width: 40%;
+        margin-left: 36%;
+    }
+}
+
+/* ~List all kollectors~
+* Controller Admin UsersController
+* admin/users/kollectors_list.html.twig
+*/
+.row_btn_img {
+    @include flex;
+
+    .little_face {
+        width: 60px;
+    }
+
+    .trois {
+        margin-right: 265px;
+    }
+
+    .quatre {
+        margin-left: 265px;
+    }
+}
+
+/*  
+:::::.\:: INTERFACE ADMIN PAGES ::/:::
+*/
+.main_admin_pages {
+    background-color: $playmo;
+}
+
+.container_admin_pages {
+    background-color: white;
+    margin-top: 40px;
+    margin: auto;
+    text-align: center;
+    width: 80%;
+    padding: 4em;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px black;
+}
+
+.marge{
+    margin-top: 2em;
+}
+/* ~Create new page kollectors~
+* Controller Admin PagesController
+* admin/pages/new.html.twig
+*/
+.form_new_page {
+    @include flex;
+
+    img {
+        height: 400px;
+    }
+
+    .form_page {
+        justify-items: start;
+    }
+}
+
+.name_kollector{
+    font-family: 'text';
+    font-weight: 600;
+    color: $playmo;
+}
+
+.btn_row_page{
+    @include flex;
+    button{
+        margin-right: 2em;
+    }
+}

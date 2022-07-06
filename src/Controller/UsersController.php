@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Pages;
-use App\Entity\Users;
-use App\Form\UsersType;
+
 use App\Form\EditProfilType;
 use App\Form\PageUserEditType;
 use App\Repository\PagesRepository;
@@ -21,11 +19,11 @@ class UsersController extends AbstractController
 {
     // ~Page profil user connected~
     #[Route('/page_user/{id}', name: 'app_users_connected', methods: ['GET', 'POST'])]
-    public function userConnected(UsersRepository $usersRepository, $id): Response
+    public function userConnected(UsersRepository $usersRepository, $id, pagesRepository $pagesRepository): Response
     {
         $user = $this->getUser();
         $id = $user->getId();
-        // dd($id);
+        $page = $pagesRepository->findOneBy(['user' => $id]);
 
         return $this->render('users/profil/show_user_connected.html.twig', [
             'users' => $usersRepository->findAll(),
@@ -57,26 +55,27 @@ class UsersController extends AbstractController
     }
 
     // ~Edit Actuality Profil user connected~
-    #[Route('/edit/actuality/{page}', name: 'app_actu_edit')]
-    public function editActuality(Request $request, ManagerRegistry  $doctrine, $page)
+    #[Route('/edit/actuality/{page}', name: 'app_actu_edit', methods: ['GET', 'POST'])]
+    public function editActuality(Request $request, PagesRepository $pagesRepository, $page)
     {
-        $user = $this->getUser();
+        $user  = $this->getUser();
         $page = $user->getPage();
+
         // dd($page);
 
         $form = $this->createForm(PageUserEditType::class, $page);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $pageUserEditType->add($page, true);
-            $em = $doctrine->getManager();
-            $em->persist($user);
-            $em->flush();
+            $pagesRepository->add($page, true);
 
-            return $this->redirectToRoute('app_users_connected');
+            $this->addFlash('update_profil', 'Profil mis à jour !');
+            // return $this->redirectToRoute('app_users_connected',  ['page' => $page]);
+            return $this->redirectToRoute('app_home');
         }
-        return $this->render('users/profil/edit_actu_user.html.twig', [
-            'form' => $form->createView(),
+
+        return $this->renderForm('users/profil/edit_user_connected.html.twig', [
+            'form' => $form,
         ]);
     }
 

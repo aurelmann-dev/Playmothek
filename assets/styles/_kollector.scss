@@ -1,0 +1,21 @@
+// ~Kollector page for visitors~
+.page_kollector_list{
+    background-image: url(/public/images/home/kollector_frame.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+.title{
+    text-align: center;
+    color: $playmo;
+    font-family: 'title';
+}
+.card{
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 1px 2px 4px black;
+    padding: 1em;
+    margin: 2em auto;
+    width: 200px;
+}

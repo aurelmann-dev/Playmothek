@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{name_site}} | Accueil
+{% endblock %}
+
+{% block body %}
+<main>
+
+    <div class="title_lexique">
+        <h2>Bienvenue dans la partie lexique !</h2>
+        <img src="{{ asset('images/pages/lexique.png') }}" alt="Photo {{playmo}} écolière">
+    </div>
+
+    <p class="speech">Voici un petit condensé du jargon de ces petits Klicky ! Commençons donc par celui-ci !</p>
+
+    <div class="definition">
+        <p class="word">Klicky(s)  :</p>
+        <blockquote>
+        <p>Avant d’être Playmobil… il étaient klickys !</p>
+        <p>Les Klickys sont en plastique particulièrement résistant, dotés de quatre articulations : ils peuvent  tourner la tête, lever les bras et se pencher en avant.
+        Les mains sont fixes !</p>
+        <p>En France, les premières générations de personnages Playmobil arrivent sur le marché sous l'appellation Klickys.</p>
+        </blockquote>
+    </div>
+
+    <div class="definition">
+        <p class="word">Diorama(s) :</p>
+        <blockquote>
+        <p>Le diorama est un système de présentation par mise en situation ou mise en scène d'un modèle d'exposition,
+        le faisant apparaître dans son environnement habituel.</p>
+        <p>C'est un mode de reconstitution d'une scène en volume.</p>
+        </blockquote>
+
+        <p class="exemple">Voici des exemples de dioramas :</p>
+
+            <div class="img_diaorama">
+                <div class="img_1"></div>
+                <div class="img_2">photo 2</div>
+                <div class="img_3">photo 3</div>
+            </div>
+    </div>
+
+
+</main>
+{% endblock %}

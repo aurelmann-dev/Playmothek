@@ -1,10 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}
+	{{name_site}}
+	| Admin_NewPage
+{% endblock %}
 
 {% block body %}
-PAGE ADMIN
-NOUVELLE PAGE
+	<main class="main_admin_pages">
+		<div class="container_admin_pages">
 
-{{ form(form) }}
+			<h2>{{admin}}</h2>
+			<h3>Création d'une page collectionneur</h3>
+
+			<div class="form_new_page">
+				<div>
+					<img class="img_admin" src="{{ asset('images/admin/fou.png') }}" alt="Dessin silhouette {{playmo}}">
+				</div>
+
+				<div>
+					{{ form_start(form) }}
+					{{ form_row(form.user, {label:'Collectionneur :' })}}
+					{{ form_row(form.networks, {label:'Réseaux sociaux' })}}
+					{{ form_row(form.presentation, {label:'Présentation :' })}}
+                    {{ form_row(form.picture, {label:'Avatar :' })}}
+				</div>
+
+
+				
+					
+			
+
+			</div>
+                {{ form_end(form) }}
+
+
+		</div>
+	</main>
+
+
 {% endblock %}

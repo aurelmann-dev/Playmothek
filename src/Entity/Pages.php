@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\PagesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PagesRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 #[ORM\Entity(repositoryClass: PagesRepository::class)]
 class Pages
@@ -21,22 +22,13 @@ class Pages
     #[ORM\Column(type: 'string', length: 255)]
     private $networks;
 
-    #[ORM\OneToOne(inversedBy: 'page', targetEntity: Users::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\OneToOne(inversedBy: 'page', targetEntity: Users::class, cascade: ['persist'])]
     private $user;
 
-    #[ORM\OneToMany(mappedBy: 'Pages', targetEntity: Pictures::class, orphanRemoval: true)]
-    private $pictures;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $Picture;
 
-    #[ORM\ManyToMany(targetEntity: Users::class, inversedBy: 'favoris')]
-    private $favoris;
-
-    public function __construct()
-    {
-        $this->pictures = new ArrayCollection();
-        $this->favoris = new ArrayCollection();
-    }
-
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -78,57 +70,19 @@ class Pages
         return $this;
     }
 
-    /**
-     * @return Collection<int, Pictures>
-     */
-    public function getPictures(): Collection
+    public function getPicture(): ?string
     {
-        return $this->pictures;
+        return $this->Picture;
     }
 
-    public function addPicture(Pictures $picture): self
+    public function setPicture(?string $Picture): self
     {
-        if (!$this->pictures->contains($picture)) {
-            $this->pictures[] = $picture;
-            $picture->setPages($this);
-        }
+        $this->Picture = $Picture;
 
         return $this;
     }
 
-    public function removePicture(Pictures $picture): self
-    {
-        if ($this->pictures->removeElement($picture)) {
-            // set the owning side to null (unless already changed)
-            if ($picture->getPages() === $this) {
-                $picture->setPages(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Users>
-     */
-    public function getFavoris(): Collection
-    {
-        return $this->favoris;
-    }
-
-    public function addFavori(Users $favori): self
-    {
-        if (!$this->favoris->contains($favori)) {
-            $this->favoris[] = $favori;
-        }
-
-        return $this;
-    }
-
-    public function removeFavori(Users $favori): self
-    {
-        $this->favoris->removeElement($favori);
-
-        return $this;
-    }
+  
+   
+   
 }

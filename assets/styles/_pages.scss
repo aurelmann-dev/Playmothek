@@ -1,0 +1,47 @@
+.title_lexique{
+    @include flex($dir:column);
+    h2{
+        font-family: 'title';
+        margin-bottom: 2em;
+    }
+    img{
+        height: 400px;
+    }
+}
+
+.speech{
+    font-size: 16px;
+    padding: 1em;
+    text-align: center;
+}
+
+.definition{
+    margin-left: 4em;
+    .word{
+        color: $bold;
+        font-size: 18px;
+        padding-bottom: 0.5em;
+    }
+    blockquote{
+        margin-left: 1em;
+        margin-bottom: 2em;
+    }
+}
+
+.exemple{
+    padding: 1em;
+}
+.img_diaorama{
+    @include flex;
+    .img_1{
+       height: 400px;
+       width: 400px;
+       border: 1px solid $grun;
+       background-image: url(/public/images/diorama/cirque.jpg);
+       background-position: bottom;
+       object-fit: cover;
+       box-shadow: 1px 1px 2px gray;
+       border-radius: 20px;
+       margin-right: 2em;
+    }
+}

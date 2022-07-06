@@ -2,5 +2,11 @@
   "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
   "build/runtime.js": "/build/runtime.js",
-  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_fu-23ca09.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_fu-23ca09.js"
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_fu-23ca09.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_fu-23ca09.js",
+  "build/fonts/BizGothic-Bold.ttf": "/build/fonts/BizGothic-Bold.b9596984.ttf",
+  "build/fonts/ZenKakuGothicNew-Regular.ttf": "/build/fonts/ZenKakuGothicNew-Regular.256c72f0.ttf",
+  "build/fonts/ZenKakuGothicNew-Light.ttf": "/build/fonts/ZenKakuGothicNew-Light.def2ab39.ttf",
+  "build/images/img_home.jpg": "/build/images/img_home.534fd035.jpg",
+  "build/images/cirque.jpg": "/build/images/cirque.24f1df26.jpg",
+  "build/images/kollector_frame.jpg": "/build/images/kollector_frame.dd8ed072.jpg"
 }

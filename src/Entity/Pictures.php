@@ -22,13 +22,6 @@ class Pictures
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $theme;
 
-    #[ORM\ManyToOne(targetEntity: Pages::class, inversedBy: 'pictures')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $Pages;
-
-    // #[ORM\ManyToOne(targetEntity: Users::class, inversedBy: 'pictures')]
-    // #[ORM\JoinColumn(nullable: false)]
-    // private $user;
 
     public function getId(): ?int
     {
@@ -71,27 +64,4 @@ class Pictures
         return $this;
     }
 
-    public function getUser(): ?Users
-    {
-        return $this->user;
-    }
-
-    public function setUser(?Users $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function getPages(): ?Pages
-    {
-        return $this->Pages;
-    }
-
-    public function setPages(?Pages $Pages): self
-    {
-        $this->Pages = $Pages;
-
-        return $this;
-    }
 }

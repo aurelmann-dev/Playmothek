@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{name_site}} | Liste des kollectors
+{% endblock %}
+
+{% block body %}
+<main class="main_admin">
+	<div class="container_admin">
+
+		<div class="head_admin">
+			<img src="{{ asset('images/offline.png') }}" alt="Dession tête {{playmo}}">
+			<div class="title_admin">				
+				<h2>{{admin}}</h2>
+				<h3>Liste des collectionneurs inscrits</h3>
+			</div>
+			<img src="{{ asset('images/offline.png') }}" alt="Dession tête {{playmo}}">
+		</div>
+
+			
+
+			<div class="row_btn_img">
+				<div class="div_playmos">
+					<img class="little_face" src="{{ asset('images/offline.png') }}" alt="Dession tête {{playmo}}">
+					<img class="little_face" src="{{ asset('images/offline.png') }}" alt="Dession tête {{playmo}}">
+					<img class="little_face trois" src="{{ asset('images/offline.png') }}" alt="Dession tête {{playmo}}">
+				</div>
+				<div class="gestion_admin">
+				<button class="btn_play"><a href="{{ path('app_admin_user_new') }}" title="Créer un nouvel utilisateur">Nouveau</a></button>
+				<button class="btn_play"><a href="{{ path('app_admin_kollectors') }}" title="Afficher uniquement les collectionneurs">Collectionneurs</a></button>
+				<button class="btn_play"><a href="{{ path('app_admin_users') }}" title="Afficher tous les utilisateurs">Afficher tout</a></button>
+			</div>
+			<div class="div_playmos">
+					<img class="little_face quatre" src="{{ asset('images/offline.png') }}" alt="Dession tête {{playmo}}">
+					<img class="little_face" src="{{ asset('images/offline.png') }}" alt="Dession tête {{playmo}}">
+					<img class="little_face" src="{{ asset('images/offline.png') }}" alt="Dession tête {{playmo}}">
+				</div>
+			</div>
+				
+
+
+			<table>
+				<thead>
+					<tr>
+						<th>N° id</th>
+						<th>Pseudo</th>
+						<th>Email</th>
+						<th>@ vérifié</th>
+						<th>Statut</th>
+
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Naissance</th>
+						<th>Profession</th>		
+						
+						<th>Code postal</th>
+						<th>Ville</th>
+
+						<th>Gestion</th>
+						<th>N° Page</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for kollector in kollectors %}
+					<tr>
+						<td>{{ kollector.id }}</td>
+						<td>{{ kollector.pseudo }}</td>
+						<td>{{ kollector.email }}</td>
+						<td>{{ kollector.isVerified ? 'Oui' : 'Non' }}</td>
+
+						<td>
+							{% for roles in kollector.roles %}
+								{% if roles == 'ROLE_ADMIN' %}
+									<p>Administrateur</p>
+								{% endif %}
+								{% if roles == 'ROLE_KOLLECTOR' %}
+									<p>Collectionneur</p>
+								{% endif %}
+							{% endfor %}
+						</td>
+
+						<td>{{ kollector.name }}</td>
+						<td>{{ kollector.firstname }}</td>
+						<td>{{ kollector.age|date('d/m/Y') }}</td>
+						<td>{{ kollector.job }}</td>
+
+						<td>{{ kollector.postalcode }}</td>
+						<td>{{ kollector.city }}</td>
+
+						<td>
+							<a href="{{ path('app_users_show', {id: kollector.id}) }}" title="Consulter"><i class="far fa-eye action_crud"></i></a>
+							<a href="{{ path('app_admin_user_edit', {id: kollector.id}) }}" title="Modifier"><i class="fas fa-edit action_crud"></i></a>
+							<a href="{{ path('app_admin_user_delete', {id: kollector.id}) }}" title="Supprimer"><i class="fas fa-ban action_crud"></i></a>
+						</td>
+
+						<td>
+							{# {% for roles in kollector.roles %} #}
+								{% if kollector.page.id  is defined%}
+									{{kollector.page.id}}
+									{% else %}
+									<a class="atta" href="">en attente</a>
+								{% endif %}								
+						{# {% endfor %} #}
+	
+						</td>
+
+					</tr>				
+					{% endfor %}
+				</tbody>
+			</table>
+
+	</div>
+	
+</main>
+{% endblock %}

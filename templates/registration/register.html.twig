@@ -1,31 +1,121 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+	<main class="main_register">
+		<div class="container_register">
 
-    <h1>Register</h1>
+			{% for flash_error in app.flashes('verify_email_error') %}
+				<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+			{% endfor %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.age) }}
-        {{ form_row(registrationForm.pseudo) }}
-
-    <div hidden>
-        {{ form_row(registrationForm.name, {value: 'name'}) }}
-        {{ form_row(registrationForm.firstname, {value: 'firstname'}) }}
-    </div>
-    
-
-        {{ form_row(registrationForm.agreeTerms) }}
+			<h2>Création d'un compte {{name_site}}</h2>
+			<p>Pour vous enregistrer, merci de compléter le formulaire ci-desous.</p>
+			<p>Si vous souhaitez vous créer un compte en tant que collectionneur,
+				<button id="btn_on" onclick="clicked()">cliquez-ici</button> et compléter le formulaire ci-dessous !</p>
 
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+			<div class="form_register_visitor">
+				<img class="img_visitor" src="{{ asset('images/login/visitor.png') }}" alt="Photo {{playmo}} babacool">
+
+				{{ form_start(registrationForm) }}
+				{{ form_row(registrationForm.email, {label: 'Email*'} ) }}
+				{{ form_row(registrationForm.pseudo, {label: 'Pseudo*'}) }}
+
+				<div class="group_input">
+					<p>Date de naissance*</p> {{ form_widget(registrationForm.age) }}
+				</div>
+
+				{{ form_row(registrationForm.plainPassword, {label: 'Mot de passe*'}, {value: ""}) }}
+			</div>
+			
+				<div id="text_hidden" class="hidden_kollector info_kollector">
+					<h3>Salut à toi collectionneur(se) !</h3>
+                    <img class="img_kollector" src="{{ asset('images/login/supporter.png') }}" alt="">
+                    <p>Merci de compléter ces quelques champs supplémentaires ci-dessous.</p>
+					<p>Si finalement, vous préférez vous inscrire en simple visiteur
+						<button type="#" id="btn_off" onclick="clickoff()">cliquez-ici</button>
+					</p>
+				</div>
+
+            <div class="form_register_kollector">
+				<div id="fiels_hidden" class="hidden_kollector">
+					{{ form_row(registrationForm.name, {label: 'Nom de famille*'}, {placeholder: ''|upper}) }}
+					{{ form_row(registrationForm.firstname, {label: 'Prénom*' }) }}
+					{{ form_row(registrationForm.postalcode, {label: 'Code postal*'}, {placeholder: ''|number_format(5, '.', ',') }) }}
+					{{ form_row(registrationForm.city, {label: 'Ville*' }) }}
+					{{ form_row(registrationForm.job, {label: 'Profession' }) }}
+				</div>
+			</div>
+
+			<div hidden>
+			{{ form_row(registrationForm.roles) }}
+			</div>
+
+			{{ form_row(registrationForm.agreeTerms, {label: 'Merci d\'accepter les conditions d\'utilisation*'}) }}
+			<button type="submit" class="btn_play">S'incrire</button>
+			{{ form_end(registrationForm) }}
+		</div>
+
+	</div>
+</main>
+
+
+
+<script>
+
+/* ~On click displays fields~ */
+var fiels = document.getElementById('fiels_hidden');
+var fiels_text = document.getElementById('text_hidden');
+
+function clicked() {
+    fiels.classList.remove("hidden_kollector");
+    fiels_text.classList.remove("hidden_kollector");
+    /* ~Change attribute~ */
+    var name = document.getElementById('registration_form_name');
+    name.setAttribute('required', true);
+
+    var firstname = document.getElementById('registration_form_firstname');
+    firstname.setAttribute('required', true);
+
+    var postalcode = document.getElementById('registration_form_postalcode');
+    postalcode.setAttribute('required', true);
+
+    var city = document.getElementById('registration_form_city');
+    city.setAttribute('required', true);
+
+	var checkbox = document.getElementById('registration_form_roles_1');
+	checkbox.checked = true;
+}
+
+/*  .--.     .-'. .   .-'..
+:::::.\:: INVERSE ::/:::
+'      `--'   `.-' --'  */
+
+/* ~On click displays fields~ */
+function clickoff() { 
+    fiels.classList.add("hidden_kollector");
+    fiels_text.classList.add("hidden_kollector");
+    /* ~Change attribute~ */
+    var name = document.getElementById('registration_form_name');
+    name.removeAttribute('required');
+
+    var firstname = document.getElementById('registration_form_firstname');
+    firstname.removeAttribute('required');
+
+    var postalcode = document.getElementById('registration_form_postalcode');
+    postalcode.removeAttribute('required');
+
+    var city = document.getElementById('registration_form_city');
+    city.removeAttribute('required');
+
+	var checkbox = document.getElementById('registration_form_roles_1');
+	checkbox.checked = false;
+
+	var elem = document.getElementById('registration_form_plainPassword').value = "";
+}
+</script>
+
 {% endblock %}

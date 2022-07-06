@@ -1,10 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
-
-{% block body %}
-PAGE ADMIN
-NOUVEAU USER
-{{ form(form) }}
+{% block title %}
+	{{name_site}}
+	| Admin_NewUSer
 {% endblock %}
+{# ADMIN ONLY #}
+{% block body %}
+	{# {{ dump(user) }} #}
 
+	<main class="main_admin">
+		<div class="container_new_user">
+
+			<h2>{{admin}}</h2>
+			<h3>Création d'un nouvel utilisateur</h3>
+
+			<div class="form_newUser_admin">
+				{{form_start(form) }}
+
+				<div class="role_statut">
+					<p>Statut du nouvel utilisateur :</p>
+					{{ form_widget(form.roles, {label: 'Statut'} ) }}
+				</div>
+
+				<div class="row_form">
+					<div>
+						<img class="img_admin" src="{{ asset('images/admin/profil_right.png') }}" alt="Dessin silhouette {{playmo}}">
+					</div>
+
+					<div class="form_left">
+						{{ form_row(form.firstname, {label: 'Prénom'}, {'value': 'Non renseigné'} ) }}
+						{{ form_row(form.name, {label: 'Nom'} ) }}
+						{{ form_row(form.pseudo, {label: 'Pseudo'} ) }}
+						{{ form_row(form.email, {label: 'Email'} ) }}
+                        {{ form_row(form.password, {label: 'Mot de passe'} ) }}
+                       
+
+					</div>
+
+					<div class="form_right">
+						
+						{{ form_row(form.postalcode, {label: 'Code postal'} ) }}
+						{{ form_row(form.city, {label: 'Ville'} ) }}
+						{{ form_row(form.job, {label: 'Profession'} ) }}
+                       <div class="group_input">
+					        <p>Date de naissance*</p> {{ form_widget(form.age) }}
+				        </div>
+						{# {{ form_row(form.playmo_icon, {label: 'Avatar'} ) }} #}
+					</div>
+				</div>
+				
+				<div class="btn_row">
+					<button class="btn_play"><a href="{{ path('app_admin_users') }}">Retour</a></button>
+					{{form_rest(form)}}
+					
+				</div>
+				{{form_end(form)}}
+
+			</div>
+
+		</div>
+		
+	</main>
+
+
+{% endblock %}

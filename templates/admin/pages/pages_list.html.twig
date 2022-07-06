@@ -1,46 +1,84 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Admin | Gestion Pages{% endblock %}
+{# ~PAGE ADMIN~ #}
+{% block title %}
+	{{name_site}}
+	| Admin_PagesList
+{% endblock %}
 
 {% block body %}
-{# ~Message delete page~ #}
+	{# ~Message delete page~ #}
 	<div>
 		{% for message in app.flashes('delete_page') %}
 			<div class="" role="alert">{{ message }}</div>
 		{% endfor %}
 	</div>
 
-PAGE ADMIN LISTE DES PAGES
-<h1>Gestion des pages collectionneurs</h1>
-{# {{dump(pages)}} #}
-<table>
-    <thead>
-        <tr>
-            <th>N°_ig</th>
-            <th>Prénom User</th>
-            <th>Nom User</th>
-            <th>Id_user</th>
-            <th>Contenu</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+	<main
+		class="main_admin_pages">
+		{# {{dump(pages)}} #}
+		<div class="container_admin_pages">
 
-    <tbody>
-        {% for page in pages %}
-           {# {{dump(page.user)}} #}
-            <tr>
-                <td>{{page.id}}</td>
-                <td>{{page.user.firstname}}</td>
-                <td>{{page.user.name}}</td>
-                <td>{{page.user.id}}</td>
-                <td>{{page.presentation}}</td>
-                <td><a href="{{ path('app_admin_page_edit', {id: page.id}) }}">Modifier</a></td>
-                <td><a href="{{ path('app_admin_page_delete', {id: page.id}) }}">Supprimer</a></td>
-            </tr>
-        {% endfor %}        
-    </tbody>
-</table>
+			<h2>{{admin}}</h2>
+			<h3>Liste des pages collectionneurs</h3>
 
-<button><a href="{{ path('app_admin_page_new') }}">Nouvelle page</a></button>
+			<table>
+				<thead>
+					<tr>
+						<th>N° Page</th>
+						<th>Nom Collectionneur</th>
+						<th>Prénom</th>
+						<th>N° id</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
 
-{% endblock %}
+				<tbody>
+					{% for page in pages %}
+						{# {{dump(page)}}  #}
+						<tr>
+							<td>{{page.id}}</td>
+							<td>{{page.user.name}}</td>
+							<td>{{page.user.firstname}}</td>
+							<td>{{page.user.id}}</td>
+							<td>
+								<a href="{{ path('app_admin_page_show', {id: page.id}) }}" title="Consulter">
+									<i class="far fa-eye action_crud"></i>
+								</a>
+								<a href="{{ path('app_admin_page_edit', {id: page.id}) }}" title="Modifier">
+									<i class="fas fa-edit action_crud"></i>
+								</a>
+								<a href="{{ path('app_admin_page_delete', {id: page.id}) }}" title="Supprimer">
+									<i class="fas fa-ban action_crud"></i>
+								</a>
+								{# {{ include('admin/pages/_delete_form.html.twig') }} #}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<button class="btn_play marge">
+				<a href="{{ path('app_admin_page_new') }}">Nouvelle page</a>
+			</button>
+		</div>
+	</main>
+
+
+	<table>
+
+
+	{#  #}
+		{# {{dump(page.user)}} #}
+		{# <tr>
+		                <td></td>
+		                <td>{{page.user.firstname}}</td>
+		                <td>{{page.user.name}}</td>
+		                <td></td>
+		                <td>{{page.presentation}}</td>
+		                <td><a href="{{ path('app_admin_page_show', {id: page.id}) }}">Voir</a></td>
+		                <td><a href="{{ path('app_admin_page_edit', {id: page.id}) }}">Modifier</a></td>
+		                <td><a href="{{ path('app_admin_page_delete', {id: page.id}) }}">Supprimer</a></td>
+		            </tr>
+		               #}
+
+
+	{% endblock %}
