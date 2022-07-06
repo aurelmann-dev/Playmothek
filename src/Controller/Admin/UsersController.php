@@ -120,9 +120,11 @@ class UsersController extends AbstractController
     #[Route('/delete/{id}', name: 'app_admin_user_delete')]
     public function deleteUser(UsersRepository $usersRepository, Users $user, Request $request)
     {
-        // if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+        $csrfToken = $request->request->get('token');
+
+        if ($this->isCsrfTokenValid('delete-user', $csrfToken)) {
         $usersRepository->remove($user, true);
-        // }
+        }
 
         $this->addFlash('delete_user', 'User supprimé.');
 

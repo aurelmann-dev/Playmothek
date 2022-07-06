@@ -36,3 +36,11 @@
 .large{
     width: 140px;
 }
+
+.btn_token{
+    border: none;
+    background-color: transparent;
+}
+.btn_token:hover{
+    cursor: pointer;
+}

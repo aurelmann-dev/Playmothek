@@ -133,11 +133,13 @@ class PagesController extends AbstractController
 
     // ~Admin only => Delete a collector page~
     #[Route('/delete/{id}', name: 'app_admin_page_delete')]
-    public function deletePage(Request $request, Pages $page, PagesRepository $pagesRepository)
+    public function deletePage(Request $request, Pages $page, PagesRepository $pagesRepository): Response
     {
-        // if ($this->isCsrfTokenValid('delete' . $page->getId(), $request->request->get('_token'))) {
+        $csrfToken = $request->request->get('token');
+
+        if ($this->isCsrfTokenValid('delete-page', $csrfToken)) {
             $pagesRepository->remove($page, true);
-        // }
+        }
         $this->addFlash('delete_page', 'Page supprimée.');
         return $this->redirectToRoute('app_admin_pages', [], Response::HTTP_SEE_OTHER);
     }

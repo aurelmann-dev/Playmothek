@@ -1,8 +1,9 @@
+console.log('toto');
+
 // NAVBAR FIXED
 /* ~Top screen navbar position~ */
 
 window.onscroll = function () { scrollNavbar() };
-
 var navbar = document.getElementById("navbar");
 var sticky = navbar.offsetTop;
 
@@ -14,6 +15,7 @@ function scrollNavbar() {
         navbar.classList.remove("sticky");
     }
 }
+
 
 
 // FORM REGISTER

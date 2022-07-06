@@ -141,7 +141,7 @@ class KollectorsController extends AbstractController
     }
 
     // ~Delete image MyPage Kollector connected~
-    #[Route('/kollector/delete/{id<\d+>}', name: 'app_kollector_connected_delete_img')]
+    #[Route('/kollector/delete/{id}', name: 'app_kollector_connected_delete_img')]
     public function deleteImage(Request $request, Images $image, ImagesRepository $imagesRepository): Response
     {
         $csrfToken = $request->request->get('token');

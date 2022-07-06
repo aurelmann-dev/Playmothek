@@ -6,79 +6,79 @@
 {% endblock %}
 
 {% block body %}
-	{# ~Message delete page~ #}
-	<div>
-		{% for message in app.flashes('delete_page') %}
-			<div class="" role="alert">{{ message }}</div>
-		{% endfor %}
-	</div>
+{# ~Message delete page~ #}
+<div>
+	{% for message in app.flashes('delete_page') %}
+		<div class="" role="alert">{{ message }}</div>
+	{% endfor %}
+</div>
 
-	<main
-		class="main_admin_pages">
-		{# {{dump(pages)}} #}
-		<div class="container_admin_pages">
+<main
+	class="main_admin_pages">
+	{# {{dump(pages)}} #}
+	<div class="container_admin_pages">
 
-			<h2>{{admin}}</h2>
-			<h3>Liste des pages collectionneurs</h3>
+		<h2>{{admin}}</h2>
+		<h3>Liste des pages collectionneurs</h3>
 
-			<table>
-				<thead>
+		<table>
+			<thead>
+				<tr>
+					<th>N° Page</th>
+					<th>Nom Collectionneur</th>
+					<th>Prénom</th>
+					<th>N° id</th>
+					<th>Consulter</th>
+					<th>Modifier</th>
+					<th>Supprimer</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for page in pages %}
+					{# {{dump(page)}}  #}
 					<tr>
-						<th>N° Page</th>
-						<th>Nom Collectionneur</th>
-						<th>Prénom</th>
-						<th>N° id</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
+						<td>{{page.id}}</td>
+						<td>{{page.user.name}}</td>
+						<td>{{page.user.firstname}}</td>
+						<td>{{page.user.id}}</td>
+						<td>
+							<a href="{{ path('app_admin_page_show', {id: page.id}) }}" title="Consulter">
+								<i class="far fa-eye action_crud"></i>
+							</a>
+						</td>
 
-				<tbody>
-					{% for page in pages %}
-						{# {{dump(page)}}  #}
-						<tr>
-							<td>{{page.id}}</td>
-							<td>{{page.user.name}}</td>
-							<td>{{page.user.firstname}}</td>
-							<td>{{page.user.id}}</td>
-							<td>
-								<a href="{{ path('app_admin_page_show', {id: page.id}) }}" title="Consulter">
-									<i class="far fa-eye action_crud"></i>
-								</a>
-								<a href="{{ path('app_admin_page_edit', {id: page.id}) }}" title="Modifier">
-									<i class="fas fa-edit action_crud"></i>
-								</a>
-								<a href="{{ path('app_admin_page_delete', {id: page.id}) }}" title="Supprimer">
+						<td>
+							<a href="{{ path('app_admin_page_edit', {id: page.id}) }}" title="Modifier">
+								<i class="fas fa-edit action_crud"></i>
+							</a>
+						</td>
+
+						<td>
+							<form action="{{ path('app_admin_page_delete', {id: page.id}) }}" method="POST">
+								<input type="hidden" name="token" value="{{ csrf_token('delete-page') }}">
+								<button
+									class="btn_token" type="submit">
+									{# <a href="{{ path('app_admin_page_delete', {id: page.id}) }}" title="Supprimer"> #}
 									<i class="fas fa-ban action_crud"></i>
 								</a>
-								{# {{ include('admin/pages/_delete_form.html.twig') }} #}
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-			<button class="btn_play marge">
-				<a href="{{ path('app_admin_page_new') }}">Nouvelle page</a>
-			</button>
-		</div>
-	</main>
+							</button>
+							</form>
+						</td>
+					</tr>
+				
+			</tbody>
+		</td>
+	</tr>
 
-
-	<table>
-
-
-	{#  #}
-		{# {{dump(page.user)}} #}
-		{# <tr>
-		                <td></td>
-		                <td>{{page.user.firstname}}</td>
-		                <td>{{page.user.name}}</td>
-		                <td></td>
-		                <td>{{page.presentation}}</td>
-		                <td><a href="{{ path('app_admin_page_show', {id: page.id}) }}">Voir</a></td>
-		                <td><a href="{{ path('app_admin_page_edit', {id: page.id}) }}">Modifier</a></td>
-		                <td><a href="{{ path('app_admin_page_delete', {id: page.id}) }}">Supprimer</a></td>
-		            </tr>
-		               #}
-
-
-	{% endblock %}
+</tbody></td></tr></tbody></td>{# {{ include('admin/pages/_delete_form.html.twig') }} #}</td></tr>{% endfor %}</tbody></table><button class="btn_play marge"><a href="{{ path('app_admin_page_new') }}">Nouvelle page</a></button> </div></main><table>{#  #}{# {{dump(page.user)}} #}{# <tr>
+							                <td></td>
+							                <td>{{page.user.firstname}}</td>
+							                <td>{{page.user.name}}</td>
+							                <td></td>
+							                <td>{{page.presentation}}</td>
+							                <td><a href="{{ path('app_admin_page_show', {id: page.id}) }}">Voir</a></td>
+							                <td><a href="{{ path('app_admin_page_edit', {id: page.id}) }}">Modifier</a></td>
+							                <td><a href="{{ path('app_admin_page_delete', {id: page.id}) }}">Supprimer</a></td>
+							            </tr>
+							               #}{% endblock %}
