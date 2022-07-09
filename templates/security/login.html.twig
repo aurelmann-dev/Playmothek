@@ -70,9 +70,8 @@
 	        </div>
 	    #}
 
+
 <script>
-
-
 /* ~Eye Password login~ */
 const eye = document.getElementById("eye_on");
 const eyeoff = document.getElementById("eye_off");
@@ -89,7 +88,12 @@ function eyeOffClick(){
 	eyeoff.classList.add('eye_display');
 	passwordField.type="password";
 }
-
 </script>
 
+
 {% endblock %}
+{# 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('eye') }}
+{% endblock %}    #}

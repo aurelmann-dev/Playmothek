@@ -4,7 +4,60 @@
 {% endblock %}
 
 {% block body %}
-	<main>
+
+<main class="main_admin_pages">
+		<div class="container_admin_pages">
+
+			<h2>{{admin}}</h2>
+			<h3>Page Collectionneur N°
+				{{ page.id }}</h3>
+
+			<div class="info_kollector">
+				<h2 class="name_kollector">Page de
+					{{page.user.firstname}}
+					{{page.user.name}}
+					- N° id :
+					{{page.user.id}}</h2>
+			</div>
+
+
+		{{ form(form) }}
+
+			{# ~Show Picture~ #}
+			<br>
+			<h2>Galerie Photos</h2>
+			<div class="galery_ad_koll">
+
+				{% for image in page.images %}
+
+					<form class="form_img_admin" action="{{ path('app_delete_img', {id: image.id}) }}" method="POST">
+						<input type="hidden" name="token" value="{{ csrf_token('delete-image') }}">
+						{{image.id}}
+						<img class="admin_img" src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+
+						<button type="submit">Supprimer</button>
+					</form>
+		
+				{% endfor %}
+
+
+			</div>
+
+
+			<div class="btn_row_page">
+				<button class="btn_play">
+					<a href="{{ path('app_admin_pages') }}">Retour</a>
+				</button>
+
+
+				{{ include('admin/pages/_delete_form.html.twig') }}
+			</div>
+
+
+		</div>
+	</main>
+
+	{# <main>
 		PAGE ADMIN
 		MODIFIER PAGE KOLLECTOR
 
@@ -12,14 +65,16 @@
 		</main>
 
          {# Verif route is pages edit #}
- 
+{#  
         <h2>Galerie photos :</h2>
-        {% for image in page.images %}
-            <div>
-                <img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
-                {# <a href="{{ path('pages_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a> #}
-            </div>
-        {% endfor %}
+      	{% for image in page.images %}
+					<form action="{{ path('app_delete_img', {id: image.id}) }}" method="POST">
+						<input type="hidden" name="token" value="{{ csrf_token('delete-image') }}">
+						{{image.id}}
+						<img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+						<button type="submit">Supprimer</button>
+					</form>
+				{% endfor %} #} 
 
 
 	{% endblock %}

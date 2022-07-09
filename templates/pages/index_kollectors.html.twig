@@ -7,32 +7,73 @@
 
 {% block body %}
 	<main class="page_kollector_list">
-		<h2 class="title">Voici nos collectionneurs !</h2>
+		<h2 class="title_list_kollector">Voici nos collectionneurs !</h2>
+
+		<div class="present_kollector">
+			<p>N'hésitez pas à visiter leur page, et admirez leur collection !</p>
+			<p>Pour laisser des commentaires à vos collectionneurs préférés :
+				<a href="{{ path('app_register') }}">inscrivez-vous !</a>
+			</p>
+		</div>
 
 
-		
+		<div class="list_kollector">
 			{% for page in pages %}
-            <div class="card">
-				<p class="card_name">{{ page.user.firstname }} {{ page.user.name }}</p>
-				<a href="{{ path('app_kollector_view', {'id': page.id})}}">Voir sa page</a>
-            </div>
+
+				<div class="card">
+
+					<div class="avatar_kollector_card">
+						<img src="{{ asset('images/avatar/profil_' ~ random(['A.png', 'B.png', 'C.png', 'D.png', 'E.png', 'F.png', 'G.png', 'H.png', 'I.png', 'J.png'])) }}" alt="Image de {{playmo}} aléatoire">
+
+						{%  if app.user.page is not defined or app.user.id != page.user.id   %}
+						<a href="{{ path('app_kollector_view', {'id': page.id})}}">voir sa page</a>
+						
+						{% else %}
+						<a href="{{ path('app_kollector_view', {'id': page.id})}}">voir ma page</a>
+						{% endif %}					
+				</div>
+
+					
+
+					<div class="info_kollector_card">
+						<h3>{{ page.user.firstname }}
+							{{ page.user.name }}</h3>
+						<p>{{ page.user.getBirthday() }}
+							ans</p>
+						{% if page.images|length == 0 %}
+							<p class="not_photo">pas encore de photo</p>
+						{% else %}
+							<p>{{ page.images|length }}
+								photos</p>
+						{% endif %}
+					</div>
+
+				</div>
 			{% endfor %}
-		
+		</div>
+
+
+		<div class="img_familly">
+			<img class="famillA" src="{{ asset('images/home/kollector_A.png')}}" alt="Photo famille de {{playmo}}">
+			<img class="famillB" src="{{ asset('images/home/kollector_C.png')}}" alt="Photo famille de {{playmo}}">
+			<img class="famillC" src="{{ asset('images/home/kollector_B.png')}}" alt="Photo famille de {{playmo}}">
+			<img class="famillD" src="{{ asset('images/home/kollector_D.png')}}" alt="Photo famille de {{playmo}}">
+		</div>
 
 
 		{# <td>{{ page.user.age|date('d/m/Y') }}</td>
-		               
-		                <td>
-		                {% if is_granted('ROLE_USER') %}
-		                    <a href="{{ path('app_page_kollector', {'id': page.id}) }}">show</a>
-		                    {# <a href="{{ path('app_pages_edit', {'id': page.id}) }}">edit</a> #}
+										               
+										                <td>
+										                {% if is_granted('ROLE_USER') %}
+										                    <a href="{{ path('app_page_kollector', {'id': page.id}) }}">show</a>
+										                    {# <a href="{{ path('app_pages_edit', {'id': page.id}) }}">edit</a> #}
 	{# {% else %}
-	                    <p>connection demandée</p>
-	                    {% endif %}
-	                </td>
-	            </tr>
-	        {% else %}
-	            <tr> #}
+				                    <p>connection demandée</p>
+				                    {% endif %}
+				                </td>
+				            </tr>
+				        {% else %}
+				            <tr> #}
 		{# <td colspan="4">no records found</td> #}
 
 

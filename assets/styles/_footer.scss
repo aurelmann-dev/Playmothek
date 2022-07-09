@@ -91,3 +91,16 @@
         }
 
 }
+
+@media screen and (max-width:400px){
+    .footer{
+        font-size: 12px;
+        padding: 3em 0.2em;
+    } 
+    .footer .footer_left, .footer .footer_middle, .footer .footer_right{
+        line-height: 1.5em;
+    }
+    .footer .networks{
+        font-size: 19px;
+    }
+}

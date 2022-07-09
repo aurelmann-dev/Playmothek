@@ -1,0 +1,423 @@
+/*  .--.    .-'.   ..--.     
+:::::.\:: INDEX ::/:::
+'      `--'     `.-' */
+
+@media screen and (max-width:400px) {
+    .page_index .img_top_three {
+        height: 160px;
+    }
+
+    .page_index .img_welcome {
+        height: 85px;
+    }
+
+    .container_main {
+        display: block;
+    }
+
+    .container_main .left_index .img_left_index,
+    .container_main .right_index .img_right_index {
+        display: none;
+    }
+
+    .container_main .main_index {
+        padding: 2em;
+        font-size: 12px;
+    }
+
+    .page_index .jingle_index h2 {
+        font-size: 20px;
+    }
+}
+
+/*     
+:::::.\:: user identifed connected ::/:::
+*/
+@media screen and (max-width:400px) {
+
+    .img_welcome {
+        margin-top: 2em;
+    }
+}
+
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: MARQUE OFFICIELLE ::/:::
+'      `--'     `.-' */
+
+@media screen and (max-width:400px) {
+    .main_officiel .container_officiel {
+        padding: 2em;
+    }
+
+
+
+
+
+    .main_officiel .container_officiel .title_para {
+        font-size: 18px;
+    }
+}
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: MAINTENANCE ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:400px) {
+    .main_custom .container_custom {
+        width: 70%;
+        padding: 2em;
+
+    }
+
+    .main_custom .container_custom .travaux {
+        width: 270px;
+    }
+}
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: KOLLECTORS LIST ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:400px) {
+    .title_list_kollector {
+        margin-bottom: 1em;
+        font-size: 20px;
+    }
+
+    .img_familly img {
+        width: 160px;
+    }
+
+    .famillC,
+    .famillD {
+        display: none;
+    }
+}
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: SHOW PAGE ONE KOLLECTOR ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:400px) {
+    .card_history_kollector {
+        p {
+            text-align: justify;
+        }
+    }
+
+    .one_page_kolletor .card_album_kollector,
+    .one_page_kolletor .card_history_kollector {
+        padding: 2em;
+    }
+}
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: DIAPORAMA KOLLECTOR ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:400px) {
+    .main_diapo .container_diapo {
+        padding: 0;
+        width: auto;
+        margin-top: 0;
+    }
+
+    .main_diapo .container_diapo .album img {
+        max-width: 350px;
+        padding-top: 0.3em;
+    }
+
+    .main_diapo .btn_left {
+        margin: 2em auto;
+    }
+
+    .main_diapo button {
+        margin: 0 auto;
+    }
+}
+
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: DIAPORAMA KOLLECTOR ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:400px) {
+    .main_register .container_register {
+        width: 60%;
+        padding: 2em;
+
+        h2 {
+            font-size: 17px;
+        }
+    }
+
+    .main_register .container_register .form_register_visitor {
+        display: block;
+        text-align: center;
+    }
+
+    .main_register .container_register .form_register_visitor #registration_form_age,
+    .main_register .container_register .form_register_visitor #registration_form_pseudo,
+    .main_register .container_register .form_register_visitor #registration_form_email,
+    .main_register .container_register .form_register_visitor #registration_form_plainPassword,
+    .main_register .container_register .form_register_visitor #registration_form_name,
+    .main_register .container_register .form_register_kollector #registration_form_name,
+    .main_register .container_register .form_register_kollector #registration_form_firstname,
+    .main_register .container_register .form_register_kollector #registration_form_job,
+    .main_register .container_register .form_register_kollector #registration_form_postalcode,
+    .main_register .container_register .form_register_kollector #registration_form_city,
+    .container_login .form_login .inter_form input,
+    .container_login .form_register .inter_form input,
+    .container_request input,
+    .form_info_update #edit_profil_name,
+    .form_info_update #edit_profil_firstname,
+    .form_info_update #edit_profil_pseudo,
+    .form_info_update #edit_profil_job,
+    .form_info_update #edit_profil_postalcode,
+    .form_info_update #edit_profil_city {
+        margin: 1em 0;
+        width: 200px;
+        font-size: 14px;
+    }
+
+    .main_register .container_register .form_register_visitor .group_input {
+        display: block;
+        margin-bottom: 3em;
+    }
+
+    .main_register .container_register .form_register_visitor #registration_form_age_day,
+    .main_register .container_register .form_register_visitor #registration_form_age_month,
+    .main_register .container_register .form_register_visitor #registration_form_age_year,
+    .form_info_update #edit_profil_age_month,
+    .form_info_update #edit_profil_age_day,
+    .form_info_update #edit_profil_age_year {
+        margin-left: 0;
+        font-size: 12px;
+        width: 66px;
+    }
+
+    .main_register .container_register .img_kollector {
+        height: 184px;
+    }
+}
+
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: LOGIN ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:400px) {
+    .container_login {
+        display: block;
+        width: 55%;
+        padding: 3em;
+    }
+
+    .container_login .img_login img {
+        height: 230px;
+    }
+}
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: FORGOT PASSWORD USER ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:400px) {
+    .container_request {
+        width: 55%;
+        padding: 3em;
+    }
+
+    .container_request img {
+        width: 239px;
+    }
+}
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: EMAIL RESET PASSWORD USER ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:400px) {
+    .check_email {
+        display: block;
+    }
+
+    .check_email img {
+        width: 140px;
+        margin-top: 2em;
+    }
+}
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: MYPAGE KOLLECTOR ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:400px) {
+    .main_koll .container_koll {
+        width: 70%;
+        padding: 2em;
+    }
+
+    .main_koll .container_koll .title_perso {
+        font-size: 16px;
+    }
+
+    .main_koll .container_koll .info_perso {
+        display: block;
+    }
+
+    .main_koll .container_koll .info_perso .titled {
+        display: none;
+    }
+
+    .num_page::before {
+        content: 'N° page : ';
+        color: $bold;
+    }
+
+    .num_first::before {
+        content: 'Prénom : ';
+        color: $bold;
+    }
+
+    .num_name::before {
+        content: 'Nom : ';
+        color: $bold;
+    }
+
+    .num_pseudo::before {
+        content: 'Pseudo : ';
+        color: $bold;
+    }
+
+    .num_email::before {
+        content: 'Email : ';
+        color: $bold;
+    }
+
+    .num_birth:before {
+        content: 'Âge : ';
+        color: $bold;
+    }
+
+    .num_birth:after {
+        content: ' ans';
+    }
+
+    .num_age::before {
+        content: 'Date de naissance : ';
+        color: $bold;
+    }
+
+    .num_postal::before {
+        content: 'Code postal : ';
+        color: $bold;
+    }
+
+    .num_city::before {
+        content: 'Ville : ';
+        color: $bold;
+    }
+
+    .num_job::before {
+        content: 'Profession : ';
+        color: $bold;
+    }
+
+    .main_koll .container_koll .line_btn .btn_info {
+        margin: 0;
+        margin-bottom: 2em;
+    }
+
+    .main_koll .container_koll .line_btn {
+        margin: 2em auto;
+    }
+
+    .history {
+        text-align: justify;
+    }
+
+    .main_koll .actuality .plus_info .networks,
+    .main_koll .actuality .plus_info .nbr_img {
+        font-size: 16px;
+    }
+
+    .container_actuality img {
+        margin: 0;
+        max-width: 300px;
+    }
+
+    .form_info_update {
+        text-align: start;
+        padding: 0;
+    }
+}
+
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: RESET PASSWORD KOLLECTOR ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:400px) {
+    .container_mdp {
+        width: 70%;
+        padding: 2em;
+    }
+
+    .form_mdp {
+        display: block;
+    }
+
+    .form_mdp img {
+        margin: 0;
+        height: 200px;
+    }
+}
+
+
+
+
+/*  .--.    .-'.   ..--.     
+:::::.\:: MARQUE OFFICIELLE ::/:::
+'      `--'     `.-' */
+@media screen and (max-width:1136px) {
+
+    .main_officiel .container_officiel .three,
+    .main_officiel .container_officiel .filles,
+    .main_officiel .container_officiel .familly {
+        width: 600px;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:1548px) {
+    .main_officiel .container_officiel .title_officiel {
+        display: block;
+    }
+}
+
+@media screen and (max-width:780px) {
+
+    .main_officiel .container_officiel .three,
+    .main_officiel .container_officiel .filles,
+    .main_officiel .container_officiel .familly {
+        width: 400px;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:400px) {
+    .main_officiel .container_officiel .title_officiel {
+        display: block;
+
+        .logo {
+            width: 240px;
+        }
+
+        h2 {
+            font-size: 16px;
+        }
+
+        img {
+            width: 200px;
+        }
+    }
+
+    .main_officiel .container_officiel .three,
+    .main_officiel .container_officiel .filles,
+    .main_officiel .container_officiel .familly {
+        width: 250px;
+        margin: 0;
+    }
+}

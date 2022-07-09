@@ -5,8 +5,7 @@
 
 
 {% block body %}
-	<main>
-		PAGE PROFIL COLLECTIONNEUR
+	<main class="main_koll">
 		{% for message in app.flashes('update_profil') %}
 			<div>{{ message }}</div>
 		{% endfor %}
@@ -14,47 +13,103 @@
 			<div>{{ message }}</div>
 		{% endfor %}
 
-		<div>
-			<p>Page de
+		<div class="container_koll">
+
+
+			<h2>Gérer votre page collection</h2>
+			<img class="logo" src="{{ asset('images/logo_playmothek.png') }}" alt="Logo Playmothek">
+
+			<h3>Heureux de vous revoir
 				{{ app.user.firstname}}
-				{{ app.user.name}}</p>
+				!</h3>
+
+
+			<h3 class="title_perso">Informations personnelles partagées :</h3>
+
+			<div class="info_perso">
+
+			<img class="img_rand" src="{{ asset('images/random/rand' ~ random([
+				'1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png']
+				)) }}" alt="Image de {{playmo}} aléatoire">
+
+				<div class="titled">
+						<h4>N° Page attribuée :</h4>
+						<h4>Prénom :</h4>
+						<h4>Nom de famille :</h4>
+						<h4>Pseudo :</h4>
+						<h4>Adresse mail :</h4>
+						<h4>Date de naissance :
+						<h4>Âge : </h4>
+						<h4>Code postal :</h4>
+						<h4>Ville :</h4>
+						<h4>Profession :</h4>
+				</div>
+
+				<div class="content_infos">
+					<p class="num_page">{{app.user.page.id}}</p>
+					<p class="num_first">{{app.user.firstname}}</p>
+					<p class="num_name">{{app.user.name}}</p>
+					<p class="num_pseudo">	{{app.user.pseudo}}</p>
+					<p class="num_email">{{app.user.email}}</p>
+					<p class="num_birth">{{app.user.getBirthday()}}</p>
+					<p class="num_age">{{app.user.age|date('d/m/Y')}}</p>
+					<p class="num_postal">{{app.user.postalCode}}</p>	
+					<p class="num_city">{{app.user.city}}</p>
+					<p class="num_job">{{app.user.job}}</p>
+				</div>
 		</div>
-        <br>
 
-        <div>
-        {{app.user.getBirthday()}} ans
-        </div>
-    <br>
-		<div>
-			<p>Présentation :
-				{{app.user.page.presentation}}</p>
+	<div class="line_btn">
+				<button class="btn_play btn_info">
+					<a href="{{ path('app_profil_edit', {'id': app.user.id}) }}">Modifier mes informations</a>
+				</button>
 
-                <br>
-			<p>Réseau :
-				{{app.user.page.networks}}</p>
+				<button class="btn_play btn_mdp">
+					<a href="{{ path('app_password_edit', {'id': app.user.id}) }}">Modifier mon mot de passe</a>
+				</button>
+			</div>
+
+		<div class="actuality">
+
+			<div>
+				<h4 class="title_perso">Votre histoire :</h4>
+				<div  class="history">
+				<p>{{app.user.page.presentation|raw}}</p>
+				</div>
+				
+			</div>
+
+			<div class="plus_info">
+				<div class="networks">
+						<h4>Votre actualité sur les réseaux :  {{app.user.page.networks}}</h4>
+					</div>
+
+					<div>
+						<h4 class="nbr_img">Nombre de photos dans votre galerie :
+						{{ app.user.page.images|length }}</h4>
+					</div>
+			</div>
+				
+		
+			<div>
+				<h4 class="title_perso">Votre galerie :</h4>
+				<div class="galery">
+						{% for image in app.user.page.images %}
+							<img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+						{% endfor %}
+					</div>
+			</div>
+
 		</div>
-<br>
 
-		<div>
-			<button>
-				<a href="{{ path('app_profil_edit', {'id': app.user.id}) }}">Modifier mes infos perso</a>
-			</button>
-			<button>
-				<a href="{{ path('app_actu_edit', {'page': app.user.page.id}) }}">Modifier mon actu</a>
-			</button>
-			<button>
-				<a href="{{ path('app_password_edit', {'id': app.user.id}) }}">Modifier le mot de passe</a>
-			</button>
-		</div>
 
-		<div>
-			<h2>Derniéres photos ajoutées :</h2>
-			<p>Nombre de photos : {{ app.user.page.images|length }}</p> 
-			{% for image in app.user.page.images %}
-					     <img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
-					   {% endfor %}
 
+				<button class="btn_play btn_actu">
+					<a href="{{ path('app_actu_edit', {'page': app.user.page.id}) }}">Modifier votre actualité</a>
+				</button>
+			</div>
 
 		</div>
+
 	</main>
 {% endblock %}

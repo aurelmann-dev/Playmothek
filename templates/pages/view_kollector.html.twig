@@ -2,25 +2,134 @@
 {# ~PAGE PUBLIC~ #}
 {% block title %}
 	{{name_site}}
-	| 
+	|
 {% endblock %}
 
 {% block body %}
-<main>
-<div>
-<p>N° page {{page.id}}</p>
-<h1>PAGE de {{page.user.firstname}}</h1>
+	<main class="one_page_kolletor">
+		{% for message in app.flashes('message') %}
+			<div>{{ message }}</div>
+		{% endfor %}
 
-<p>{{page.presentation}}</p>
- <a href="{{ path('app_kollectors_list') }}">Retour à la liste</a>
-</div>
-</main>
+<h2 id="top_page">Bienvenue chez {{page.user.firstname}} !</h2>
+		{# {{page.id}} #}
+		
+		{# Part personal infos #}
+		<div class="present_person">
+			<img src="{{ asset('images/avatar/profil_' ~ random(['A.png', 'B.png', 'C.png', 'D.png', 'E.png', 'F.png', 'G.png', 'H.png', 'I.png', 'J.png'])) }}" alt="Image de {{playmo}} aléatoire">
 
-   {% for image in page.images %}
-            <div>
-                <img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
-                {# <a href="{{ path('pages_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a> #}
-            </div>
-        {% endfor %}
+				<p>{{page.user.firstname}} a {{ page.user.getBirthday()}} ans, et vit à {{ page.user.city}} 
+				(dans le {{ page.user.postalcode }})</p>
+		</div>
+		
+		{# Part personal presentation #}
+		<div class="card_history_kollector">
+			<h3>Histoire d'un collectionneur :</h3>
+			<br>
+			<p>{{page.presentation|raw}}</p>
+		</div>
+
+		{# Part personal presentation #}
+		<div class="networks">
+			<p>Vous pouvez retrouver {{ page.user.firstname }} sur les réseaux sociaux :</p>
+		
+				{% if  page.user.networks is defined %}
+					<p>{{ page.user.networks }}</p>
+					{% else %}
+						<p class="not_network">{{ page.user.firstname }} n'a pas encore communiqué sur son actualité !</p>
+				{% endif %}
+		</div>
+
+		{# Part galery #}
+		<div class="card_album_kollector">
+				<h3>Il y a {{ page.images|length }} photos dans la galerie de {{ page.user.firstname }} :</h3>
+				<a href="{{ path('app_kollector_diaporama',  {'id': page.id}) }}">Voir le diaporama</a>
+				<br>
+				<div class="album">
+						{% for image in page.images %}
+								<img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+						{% endfor %}
+				</div>
+				
+		</div>
+	
+
+	{% if is_granted('ROLE_USER') or is_granted('ROLE_KOLLECTOR')%}
+			{# Part Comments #}
+			<div class="card_comment_kollector">
+					<div>
+						<h3>Vos commentaires à {{ page.user.firstname }} :</h3>
+
+						{% for comment in page.comments %}
+							{% if comment.parent == null %}
+
+							<div class="info_comment">
+								<img class="avatar_comment" src="{{ asset('images/avatar/profil_' ~ random(['A.png', 'B.png', 'C.png', 'D.png', 'E.png', 'F.png', 'G.png', 'H.png', 'I.png', 'J.png'])) }}" alt="Image de {{playmo}} aléatoire">
+								<p><span>Publié par :</span> {{ comment.email}} <span>le : </span> {{ comment.createdAt|date('d/m/Y') }} <span>à</span> {{ comment.createdAt|date('H:i') }}</p>
+							</div>
+
+							<div class="content_comment">
+								{{ comment.content|raw  }}
+							</div>	
+
+							{# Answers #}
+							<div class="answer_comment">
+								<a href="#add_comment" data-reply data-id="{{ comment.id }}">Répondre</a>
+							</div>	
+								
+									{% for reply in comment.replies %}
+									<div class="answers_comment">
+										<img class="avatar_comment" src="{{ asset('images/avatar/profil_' ~ random(['A.png', 'B.png', 'C.png', 'D.png', 'E.png', 'F.png', 'G.png', 'H.png', 'I.png', 'J.png'])) }}" alt="Image de {{playmo}} aléatoire">
+										<p><span>Réponse de :</span> {{ reply.email}}<span> le : </span> {{ reply.createdAt|date('d/m/Y') }} <span>à</span> {{ reply.createdAt|date('H:i') }}</p>
+									</div>	
+
+									<div class="content_answers">
+										{{ reply.content|raw  }}
+									</div>
+
+									{% endfor %}
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+
+				<div id="add_comment">
+					<h3>Ajouter un commentaire en tant que {{app.user.pseudo}}</h3>
+
+						{{form_start(commentForm)}}
+							{{ form_widget(commentForm.content) }}
+						<div hidden>
+							{{ form_row(commentForm.email, {value : app.user.email}) }}
+						</div>
+
+						<div class="rgpd">
+							{{ form_row(commentForm.rgpd, {label : "En soumettant ce formulaire, j'accepte que mes informations soient conservées et utilisées uniquement dans le cadre de ma demande."}) }}
+						</div>
+						{{form_end(commentForm)}}
+				</div>
+	
+			<div class="navigation">
+				<button class="btn_play top_page"><a href="#top_page">Haut de page</a></button>
+				<button class="btn_play"><a href="{{ path('app_kollectors_list') }}">Retour à la liste</a></button>
+			</div>
+	{% else %}
+		<div>
+		<p class="text_grun">Si vous souhaiter envoyer un commentaire à {{ page.user.firstname }}, vous devez être connecté.</p>
+		<p class="register"><a href="{{ path('app_register') }}">Inscrivez-vous !</a></p>
+		</div>
+	
+	{% endif %}
+		
+
+	</main>
+	<script>
+		window.onload = () => {
+			document.querySelectorAll("[data-reply]").forEach(element => {
+			element.addEventListener("click", function () { /*console.log(this);*/
+			document.querySelector("#comments_parent_id").value = this.dataset.id;
+			})
+		});
+	}
+	</script>
 
 {% endblock %}

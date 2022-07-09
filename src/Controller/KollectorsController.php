@@ -152,6 +152,7 @@ class KollectorsController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
     }
+      // ~Kollector connected => MyPage delete image = ok~
 }
 
-    // ~Kollector connected => MyPage delete image = ok~
+  

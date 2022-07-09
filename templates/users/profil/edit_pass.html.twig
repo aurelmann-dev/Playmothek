@@ -1,34 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page Collectionneur{% endblock %}
-
-{% block body %}
-   
-MODIFICATION MOT DE PASSE
-PROFIL COLLECTIONNEUR
-
-<div>
-<p>Modif mot de passe de {{ app.user.firstname}} {{ app.user.name}}</p>
-</div>
-{# ~Messages for change password~ #}
-
-
-{% for message in app.flashes('password_error') %}
-        <div>{{ message }}</div>
-{% endfor %}
-
-<div>
-    <form method="POST">
-        <label for="newpass">Mot de passe</label>
-        <input type="password" id="newpass" name="newpass">
-
-        <label for="newpass2">Confirmer mot de passe</label>
-        <input type="password" id="newpass2" name="newpass2">
-
-        <button>Valider</button>
-    </form>
-</div>
+{% block title %}Page Collectionneur
 {% endblock %}
 
+{% block body %}
+
+	<main class="main_login">
+
+		{% for message in app.flashes('password_error') %}
+			<div>{{ message }}</div>
+		{% endfor %}
+
+		<div class="container_mdp">
+
+			<div>
+				<img class="logo" src="{{ asset('images/logo_playmothek.png') }}" alt="Logo Playmothek">
+
+				<h3>{{ app.user.firstname}}
+					vous souhaitez changer de mot de passe ?</h3>
+			</div>
+			{# ~Messages for change password~ #}
 
 
+
+				<form method="POST">
+
+					<div class="form_mdp">
+
+                        <div>
+                            <label for="newpass">Nouveau mot de passe</label>
+                            <input type="password" id="newpass" name="newpass">
+                            <br>
+                            <label for="newpass2">Confirmer mot de passe</label>
+                            <input type="password" id="newpass2" name="newpass2">
+                        </div>
+
+					<div>
+						<img src="{{ asset('images/login/coffre.jpg') }}" alt="Photo {{playmo}} coffe-fort">
+					</div>
+			</div>
+
+				<button class="btn_play">Valider</button>
+			</form>
+
+
+		</div>
+
+	</main>
+
+{% endblock %}

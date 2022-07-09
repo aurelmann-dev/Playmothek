@@ -59,8 +59,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     /*
     *@ORM\JoinColumn(nullable=true)
     */
-   
-
     private $page;
 
 

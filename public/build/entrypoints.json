@@ -9,6 +9,12 @@
       "css": [
         "/build/app.css"
       ]
+    },
+    "register": {
+      "js": [
+        "/build/runtime.js",
+        "/build/register.js"
+      ]
     }
   }
 }

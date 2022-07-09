@@ -8,7 +8,9 @@ use App\Entity\Images;
 use App\Form\PagesType;
 use App\Form\PageUserEditType;
 use App\Repository\PagesRepository;
+use App\Repository\ImagesRepository;
 use Symfony\Component\Finder\Finder;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,39 +41,41 @@ class PagesController extends AbstractController
 
 
     // ~Admin only => Create a new collector page~
-    #[Route('/new', name: 'app_admin_page_new')]
-    public function newPage(Request $request, PagesRepository $pagesRepository)
+    #[Route('/new', name: 'app_admin_page_new', methods: ['GET', 'POST'])]
+    public function newPage(Request $request, EntityManagerInterface $entityManager, PagesRepository $pagesRepository)
     {
         $page = new Pages();
         $form = $this->createForm(PagesType::class, $page);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            // ~Gestion Images Upload~
-            $images = $form->get('images')->getData();
-            // ~Boucle on image (multiple)~
-            foreach ($images as $image) {
-                // ~New name file~
-                $fichier = md5(uniqid()) . '.' . $image->getExtension();
-                // ~Copy in upload_directory file~
-                $image->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
-
-                // ~Save img title img in BDD~
-                $img = new Images();
-                $img->setTitle($fichier);
-                $page->addImage($img);
-            }
-
-            $pagesRepository->add($page, true);
-
+        if ($form->isSubmitted() && $form->isValid()) {    
+            
+                // ~Gestion Images Upload~
+                $images = $form->get('images')->getData();
+                // ~Boucle on image (multiple)~           
+    
+                foreach ($images as $image) {
+                    // ~New name file~
+                    $fichier = md5(uniqid()) . '.' . $image->getExtension();
+                    // ~Copy in upload_directory file~
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $fichier
+                    );
+                  
+                    // ~Save img title img in BDD~
+                    $img = new Images();
+                    $img->setTitle($fichier);
+                    $page->addImage($img);
+                }
+          
+                $pagesRepository->add($page, true);
+            
             return $this->redirectToRoute('app_admin_pages');
         }
         return $this->render('admin/pages/new.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'page' => $page
         ]);
         //~adminController => connexion admin=> new one page = OK~
     }
@@ -130,6 +134,19 @@ class PagesController extends AbstractController
         //~adminController => connexion admin=> update page of kollector with img = OK~
     }
 
+      // ~Delete image kollector~
+      #[Route('/delete/image/{id}', name: 'app_delete_img')]
+      public function deleteImage(Request $request, Images $image, ImagesRepository $imagesRepository): Response
+      {
+
+          $csrfToken = $request->request->get('token');
+          
+          if ($this->isCsrfTokenValid('delete-image', $csrfToken)) {
+              $imagesRepository->remove($image, true);
+              // message a faire
+              return $this->redirectToRoute('app_admin_pages');
+          }
+      }
 
     // ~Admin only => Delete a collector page~
     #[Route('/delete/{id}', name: 'app_admin_page_delete')]
@@ -142,6 +159,8 @@ class PagesController extends AbstractController
         }
         $this->addFlash('delete_page', 'Page supprimée.');
         return $this->redirectToRoute('app_admin_pages', [], Response::HTTP_SEE_OTHER);
+            //~adminController => connexion admin=> delete one page = OK~
     }
-    //~adminController => connexion admin=> delete one page = OK~
+
+
 }

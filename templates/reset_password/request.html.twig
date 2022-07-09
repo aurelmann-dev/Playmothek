@@ -3,20 +3,42 @@
 {% block title %}Reset your password{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('reset_password_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-    <h1>Reset your password</h1>
 
-    {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
-        <div>
-            <small>
-                Enter your email address and we will send you a
-                link to reset your password.
-            </small>
-        </div>
+<main class="main_login">
+  {% for flash_error in app.flashes('reset_password_error') %}
+                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+ {% endfor %}
 
-        <button class="btn btn-primary">Send password reset email</button>
-    {{ form_end(requestForm) }}
+    
+    
+    <div class="container_request">
+    <h2>Compte {{name_site}}</h2>
+	<h3 class="h3 mb-3 font-weight-normal">Réinitialisez votre mot de passe :</h3>
+    
+    <div class="form_request">
+
+    <img src="{{ asset('images/login/request.png') }}" alt="Photo {{playmo}} facteur">
+
+        {{ form_start(requestForm) }}
+            {{ form_row(requestForm.email, {label: 'Votre email : '}) }}
+            <div>
+                <small>
+                    Entrez votre adresse email, et vous recevrez un lien pour réinitialiser votre mot de passe.
+                    <br>
+                    Attention, ce lien n'est valable qu'une heure !
+                </small>
+            </div>
+
+            <button class="btn_play">Envoyer</button>
+        {{ form_end(requestForm) }}
+    </div>
+         
+
+    </div>
+</main>
+  
+
+
+   
+
 {% endblock %}

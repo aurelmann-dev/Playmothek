@@ -36,7 +36,11 @@ class EditProfilType extends AbstractType
             ] )
             // ->add('playmo_icon')
 
-            ->add('Valider', SubmitType::class)
+            ->add('Valider', SubmitType::class, [
+                'attr' =>[
+                    'class' => 'btn_play'
+                ]
+            ])
         ;
     }
 

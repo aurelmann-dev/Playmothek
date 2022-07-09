@@ -55,7 +55,7 @@
             display: none;
             position: absolute;
             background-color: $grun;
-            width: 150px;
+            width: 180px;
             z-index: 3;
             border-radius: 5%;
 
@@ -80,9 +80,11 @@
         }
     }
 }
-.link_connexion{
+
+.link_connexion {
     margin-bottom: 2em;
 }
+
 .link_connexion:hover {
     text-decoration: underline;
 }
@@ -105,10 +107,10 @@
     top: 0;
     // width: 98%;
     // -webkit-fill-available
-  }
+}
 
 
-  /*
+/*
     _\/_                   |                _\/_
     /o\\              \       /           //o\
        |                   .---.               |
@@ -116,19 +118,19 @@
     `~^~^~^ RESPONSIVE ~^~^~^`
 */
 @media screen and (max-width:1100px) {
-    .home_menu{
+    .home_menu {
         font-size: 16px;
     }
 }
 
 @media screen and (max-width:1100px) {
-    .navbar .home_menu ol li{
+    .navbar .home_menu ol li {
         padding-left: 3em;
     }
 }
 
 @media screen and (max-width:920px) {
-    .navbar .home_menu ol{
+    .navbar .home_menu ol {
         flex-direction: column;
         font-size: 14px;
         line-height: 2em;
@@ -136,13 +138,54 @@
 }
 
 @media screen and (max-width:560px) {
-    .navbar .connexion_home_user img{
-        display: none;
+    .navbar .connexion_home_user img {
+        display: flex;
     }
-    .connexion_home_user{
+
+    .connexion_home_user {
         position: absolute;
         left: 50px;
         top: 84px;
     }
 }
 
+@media screen and (max-width:400px) {
+    .img_home {
+        height: 115px;
+    }
+
+    .navbar .home_menu ol {
+        font-size: 12px;
+        line-height: 2em;
+    }
+
+    #navbar {
+        padding: 0.5em 0 3em 0;
+
+        img {
+            height: 25px;
+        }
+    }
+
+    .navbar .connexion_home_user {
+        top: 60px;
+        left: 10%;
+        margin-bottom: 2em;
+        font-size: 12px;
+        flex-direction: row;
+        align-items: baseline;
+        width: 100px;
+    }
+
+    .navbar .home_menu .dropdown_menu {
+        width: 100px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width:790px) {
+
+    #navbar {
+        padding: 0.5em 0 3em 0;
+    }
+}

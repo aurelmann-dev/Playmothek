@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Users
+{% endblock %}
+
+{% block body %}
+	<main class="main_diapo">
+
+		<div class="container_diapo">
+			<div
+				class="album">
+				{# {{dump(images)}} #}
+				{% for image in images %}
+					<img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+				{% endfor %}
+			</div>
+			<p>{{ knp_pagination_render(images) }} sur {{ page.images|length }} page(s)</p>
+
+		</div>
+
+		<div class="line_byn">
+
+			<button class="btn_play btn_left">
+				<a href="{{ path('app_kollectors_list') }}">Retour à la page de
+					{{page.user.firstname}}</a>
+			</button>
+
+			<button class="btn_play">
+				<a href="{{ path('app_kollectors_list') }}">Retour à la liste des collectionneurs</a>
+			</button>
+		</div>
+
+
+	</main>
+
+{% endblock %}

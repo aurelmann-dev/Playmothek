@@ -19,7 +19,6 @@
 					{{page.user.id}}</h2>
 			</div>
 
-	
 
 			<div class="info_perso_kollector">
 				<h3 class="info_perso">Informations personnelles :
@@ -49,8 +48,7 @@
 			<br>
 			<h3 class="presentation">Informations personnelles :
 			</h3>
-			<p>
-				{{page.presentation}}</p>
+			<p class="content_presentation">{{page.presentation|raw}}</p>
 			<br>
 			<hr>
 			<br>
@@ -63,12 +61,21 @@
 
 			{# ~Show Picture~ #}
 			<h2>Galerie Photos</h2>
-		  {% for image in page.images %}
-            <div>
-                <img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
-                {# <a href="{{ path('pages_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a> #}
-            </div>
-        {% endfor %}
+			<div class="galery_ad_koll">
+
+				{% for image in page.images %}
+
+					<form class="form_img_admin" action="{{ path('app_delete_img', {id: image.id}) }}" method="POST">
+						<input type="hidden" name="token" value="{{ csrf_token('delete-image') }}">
+						{{image.id}}
+						<img class="admin_img" src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+						<button type="submit">Supprimer</button>
+					</form>
+		
+				{% endfor %}
+
+
+			</div>
 
 
 			<div class="btn_row_page">

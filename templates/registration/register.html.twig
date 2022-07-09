@@ -63,9 +63,8 @@
 </main>
 
 
-<script>
-// FORM REGISTER
 
+<script>
 /* ~On click displays fields~ */
 var fiels = document.getElementById('fiels_hidden');
 var fiels_text = document.getElementById('text_hidden');
@@ -114,6 +113,12 @@ function clickoff() {
 
 	var elem = document.getElementById('registration_form_plainPassword').value = "";
 }
-</script>
 
+
+</script>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('register') }}
+{% endblock %}   

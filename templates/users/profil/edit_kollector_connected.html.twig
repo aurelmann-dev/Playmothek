@@ -1,32 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page Collectionneur{% endblock %}
-
-{% block body %}
-   <main>
-   
-
-MODIFICATION PROFIL COLLECTIONNEUR CONNECTE
-
-<div>
-<p>Modif Page de {{ app.user.firstname}} {{ app.user.name}}</p>
-</div>
-
-<div>
-{{ form(form)}}
-</div>
-
-	<div>
-			<h2>Derniéres photos ajoutées :</h2>
-			<p>Nombre de photos : {{ app.user.page.images|length }}</p> 
-			{% for image in app.user.page.images %}
-					     <img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
-					   {% endfor %}
-
-
-		</div>
-   </main>
+{% block title %}Page Collectionneur
 {% endblock %}
 
+{% block body %}
+	<main class="main_koll">
+
+		<div class="container_koll">
+			<h3>Mise à jour de vos informations</h3>
+
+			<div class="form_info_update">
+				{{ form_start(form)}}
+
+				{{ form_row(form.name, {label: 'Nom de famille : '}) }}
+				{{ form_row(form.firstname, {label: 'Prénom : '}) }}
+				{{ form_row(form.pseudo, {label: 'Pseudo : '}) }}
+				{{ form_row(form.age, {label: 'Date de naissance : '}) }}
+				{{ form_row(form.job, {label: 'Profession : '}) }}
+				{{ form_row(form.postalcode, {label: 'Code postal : '}) }}
+				{{ form_row(form.city, {label: 'Ville : '}) }}
+				{{ form_end(form)}}
+			</div>
+
+		</div>
 
 
+	</main>
+{% endblock %}

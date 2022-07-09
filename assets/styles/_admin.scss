@@ -317,9 +317,10 @@ table {
     box-shadow: 2px 2px 10px black;
 }
 
-.marge{
+.marge {
     margin-top: 2em;
 }
+
 /* ~Create new page kollectors~
 * Controller Admin PagesController
 * admin/pages/new.html.twig
@@ -336,15 +337,37 @@ table {
     }
 }
 
-.name_kollector{
+.name_kollector {
     font-family: 'text';
     font-weight: 600;
     color: $playmo;
 }
 
-.btn_row_page{
+.btn_row_page {
     @include flex;
-    button{
+
+    button {
         margin-right: 2em;
     }
+}
+
+.galery_ad_koll {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    img {
+        height: 200px;
+
+    }
+}
+.form_img_admin{
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+}
+
+
+#page_user_edit_images{
+    margin-bottom: 3em;
 }

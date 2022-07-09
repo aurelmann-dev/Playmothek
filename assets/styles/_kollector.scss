@@ -1,21 +1,496 @@
 // ~Kollector page for visitors~
-.page_kollector_list{
-    background-image: url(/public/images/home/kollector_frame.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-}
-.title{
+.title_list_kollector {
     text-align: center;
     color: $playmo;
     font-family: 'title';
+    color: black;
+    margin-bottom: 2em;
 }
-.card{
-    background-color: red;
+
+.present_kollector {
+    text-align: center;
+    margin-bottom: 2em
+}
+
+.list_kollector {
+    @include flex;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: auto;
+
+    .card {
+        @include flex;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 1px 2px 4px black;
+        padding: 1em;
+        margin: 1em;
+        width: 300px;
+        border: 1px solid $playmo;
+
+        .avatar_kollector_card {
+            @include flex($dir: column);
+            margin-right: 2em;
+        }
+
+        a {
+            color: $playmo;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: $violett;
+        }
+
+        .info_kollector_card {
+            h3 {
+                color: $bold;
+            }
+
+            .not_photo {
+                font-family: 'notation';
+                font-size: 14px;
+                font-style: italic
+            }
+        }
+    }
+}
+
+.img_familly {
+    @include flex;
+    margin-bottom: -3em;
+
+    img {
+        width: 450px;
+        margin-top: 4em;
+    }
+}
+
+
+/*  
+:::::.\:: SINGLE PAGE KOLLECTOR ::/:::
+*/
+.one_page_kolletor {
+    text-align: center;
+
+    .card_history_kollector {
+        background-color: $grun;
+        width: 70%;
+        box-shadow: 1px 1px 2px black;
+        text-align: start;
+        padding: 4em;
+        margin: 2em auto;
+        border-radius: 20px;
+    }
+
+    .not_network {
+        font-family: 'notation';
+        font-size: 14px;
+        font-style: italic;
+    }
+
+    .card_album_kollector {
+        background-color: $playmo;
+        width: 70%;
+        box-shadow: 1px 1px 2px black;
+        text-align: start;
+        padding: 4em;
+        margin: 2em auto;
+        border-radius: 20px;
+
+        .album {
+            @include flex;
+            flex-wrap: wrap;
+
+            img {
+                margin: 1em;
+                width: 200px;
+                box-shadow: 1px 1px 2px black;
+                border-radius: 5px;
+            }
+        }
+    }
+
+
+    .card_comment_kollector {
+        background-color: $violett;
+        width: 70%;
+        box-shadow: 1px 1px 2px black;
+        text-align: start;
+        padding: 4em;
+        margin: 2em auto;
+        border-radius: 20px;
+
+        .info_comment,
+        .answers_comment {
+            display: flex;
+            margin-top: 2em;
+            background-color: white;
+            padding: 0.5em;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            box-shadow: 1px -2px 1px black;
+
+            .avatar_comment {
+                width: 50px;
+            }
+
+            p {
+                padding-left: 0.5em;
+                padding-top: 1em;
+
+                span {
+                    color: $violett;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .content_comment,
+        .content_answers {
+            padding: 0.3em 4em;
+            background-color: white;
+        }
+
+        .answer_comment {
+            background-color: white;
+            padding: 1em;
+            text-align: center;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+
+            a {
+                color: $violett;
+                font-weight: bold;
+            }
+
+            a:hover {
+                color: $bold;
+                text-decoration: underline;
+            }
+        }
+
+        .content_answers {
+            padding-bottom: 1em;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    }
+
+    .add_comment {
+        margin-top: 5em;
+
+    }
+
+    .cke_chrome {
+        width: 70%;
+        margin: auto;
+    }
+}
+
+#comments_rgpd {
+    margin-top: 2em;
+    margin-bottom: 3em;
+    margin-left: 0.5em;
+}
+
+.navigation {
+    @include flex($align: space-around);
+
+    button {
+        margin-top: 4em;
+    }
+}
+
+.top_page {
+    margin-right: 4em;
+}
+
+.text_grun {
+    color: $bold;
+}
+
+.register {
+    padding-top: 1em;
+
+    a {
+        color: $violett;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: black;
+    }
+}
+
+/*  
+:::::.\:: MYPAGE KOLLECTOR ::/:::
+*/
+.main_koll {
+    background-color: $playmo;
+
+    .container_koll {
+        background-color: white;
+        margin-top: 40px;
+        margin: auto;
+        text-align: center;
+        width: 50%;
+        padding: 4em;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px black;
+
+        .title_perso {
+            margin: 2em auto;
+            font-family: 'title';
+            color: $blau;
+            text-decoration: underline;
+        }
+
+        h4 {
+            color: $bold;
+        }
+
+        .info_perso {
+            @include flex;
+
+            .img_rand {
+                width: 250px;
+                margin-right: 2em;
+            }
+
+            .titled {
+                text-align: end;
+                margin-right: 1.5em;
+
+                p {
+                    margin-bottom: 0.5em;
+                }
+            }
+
+            .content_infos {
+                text-align: start;
+
+            }
+        }
+
+
+        .line_btn {
+            margin: 3em auto;
+
+            .btn_info {
+                margin-right: 1em;
+                width: 220px;
+            }
+
+            .btn_mdp {
+                width: 220px;
+            }
+        }
+    }
+
+    .actuality {
+        .history {
+            text-align: justify;
+        }
+
+        .plus_info {
+            margin: 2em;
+
+            .networks,
+            .nbr_img {
+                @include flex($just: start);
+                padding-top: 1em;
+            }
+        }
+
+        img {
+            margin: 1em;
+            width: 200px;
+            box-shadow: 1px 1px 2px black;
+            border-radius: 5px;
+        }
+
+
+    }
+
+    .btn_actu {
+        margin-top: 1em;
+        width: 220px;
+    }
+}
+
+
+/*  
+:::::.\:: DIAPORAMA ::/:::
+*/
+.main_diapo {
+    background-color: $playmo;
+    text-align: center;
+
+    .container_diapo {
+        background-color: white;
+        margin-top: 40px;
+        margin: auto;
+        text-align: center;
+        width: 53%;
+        padding: 4em;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px black;
+
+        .album {
+            img {
+                background-color: white;
+                max-width: 1000px;
+                box-shadow: 1px 1px 2px black;
+                border-radius: 20px;
+            }
+        }
+    }
+
+    button {
+        margin: 3em auto;
+        width: 300px;
+    }
+
+    .btn_left {
+        margin-right: 5em;
+    }
+
+    .pagination {
+        font-family: 'title';
+        color: $bold;
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+/*  
+:::::.\:: CHANGE MDP KOLLECTOR ::/:::
+*/
+.container_mdp {
+    background-color: white;
+    margin-top: 40px;
+    margin: auto;
+    text-align: center;
+    width: 60%;
+    padding: 4em;
     border-radius: 20px;
-    box-shadow: 1px 2px 4px black;
-    padding: 1em;
-    margin: 2em auto;
-    width: 200px;
+    box-shadow: 2px 2px 10px black;
+
+    input {
+
+        height: 25px;
+        width: 250px;
+        border-radius: 10px;
+        margin-top: 0.5em;
+        margin-bottom: 1.5em;
+        padding: 0.5em;
+        font-size: 16px;
+    }
+
+}
+
+
+.form_mdp {
+    text-align: end;
+    @include flex;
+    margin-right: 3em;
+
+    .flex {
+        display: flex;
+    }
+
+    img {
+        height: 400px;
+        margin-left: 3em;
+    }
+}
+
+
+/*  
+:::::.\:: UPDATE INFO PERSO & ACTUALITY ::/:::
+*/
+.form_info_update {
+
+    text-align: end;
+    padding-right: 15em;
+
+
+
+    #edit_profil_name,
+    #edit_profil_firstname,
+    #edit_profil_pseudo,
+    #edit_profil_job,
+    #edit_profil_postalcode,
+    #edit_profil_city {
+        height: 25px;
+        width: 350px;
+        border-radius: 10px;
+        margin-top: 0.5em;
+        margin-bottom: 1.5em;
+        padding: 0.5em;
+        font-size: 16px;
+    }
+
+    #edit_profil_age_month,
+    #edit_profil_age_day,
+    #edit_profil_age_year {
+        text-align: center;
+        height: 45px;
+        width: 90px;
+        border-radius: 10px;
+        margin-top: 0.5em;
+        margin-bottom: 1.5em;
+        padding: 0.5em;
+        font-size: 16px;
+        margin-left: 1em;
+
+    }
+}
+
+
+.container_actuality {
+    background-color: white;
+    margin-top: 40px;
+    margin: auto;
+    text-align: center;
+    width: 70%;
+    padding: 3em;
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px black;
+
+    h3 {
+        color: $bold;
+        margin: 2em;
+    }
+
+    .galery_gest {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    img {
+        height: 200px;
+        margin: 1em;
+        border-radius: 10px;
+    }
+
+    .list_img {
+        margin: 2em;
+    }
+
+    .btn_suppr {
+        width: 200px;
+    }
+
+    .btn_suppr:hover {
+        background-color: $violett;
+        color: white;
+    }
+
+    #page_user_edit_images {
+        margin-bottom: 3em;
+    }
+
 }

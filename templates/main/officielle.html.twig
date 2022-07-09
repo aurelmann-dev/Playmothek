@@ -1,8 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{name_site}} | Accueil
+{% block title %}
+	{{name_site}}
+	| Accueil
 {% endblock %}
 
 {% block body %}
-PAGE MARQUE OFFICIELLE
+	<main class="main_officiel">
+		<div class="container_officiel">
+
+			<div class="title_officiel">
+				<img class="logo" src="{{ asset('images/logo_playmothek.png') }}" alt="Logo Playmothek">
+				<h2 class="slogan">en avant...{{playmo}}<sup class="registered">®</sup>
+					!!</h2>
+				<img src="{{ asset('images/pages/rico.png') }}" alt="Photos de {{playmo}} Rico">
+			</div>
+
+			<div>
+				<h2 class="title_para">Les origines de la marque...</h2>
+                    <p>En Allemagne, en Bavière plus précisément, Andreas Brandstätter fonde sa société en 1876. Trente-deux ans plus tard, en 1908, son fils lui succède.
+                    L’entreprise s’appelle alors Geobra. Elle déménage en 1921 à Zirndorf. L’année 1952 est un tournant dans l’histoire de la société avec l’arrivée de Horst Brandstätter. </p>
+                    <p> Il développe la matière plastique et demande à Hans Beck d’imaginer un nouveau jouet. </p>
+                    <p>L'idée de la figurine Klicky (comme le "clic" que l'on entend lorsqu'on assemble ses composants), naît en 1971, en pleine crise pétrolière. </p>
+                    <p> Un brevet est déposé en 1972 pour la figurine que nous connaissons aujourd’hui ! </p>
+                    <p> Il faut attendre 1974 pour que la marque Playmobil® soit lancée. Le premier Playmobil® est né !</p>
+                    <p>Plus précisément, ce sont trois personnages qui voient le jour la même année. Ce sont des figurines inventées par Hans Beck sur la demande de Horst Brandstätter. </p>
+                    <p>Mais 1974 n’est que le début de la formidable aventure de la marque Playmobil®. </p>
+                    <p>En effet, il ne suffit pas d’inventer un nouveau jouet, une nouvelle figurine pour que cela fonctionne. Il faut plaire aux enfants et aux parents. Et c’est ce que Playmobil® a réussi à faire.</p>
+                    <p>Avec la création d’une véritable collection, le groupe réussit à s’implanter durablement en France. Le produit Playmobil® est fabriqué en Europe et les informations liées à leur qualité et sécurité sont facilement accessibles.</p>
+		    </div>
+
+
+            <div>
+                <h2 class="title_para para2">Le saviez-vous ?...</h2>
+                <p> Au lancement de la marque Playmobil® il y avait trois personnages, les trois premiers : l’indien, le chevalier et l’ouvrier.</p>
+                <img class="three" src="{{ asset('images/pages/three.jpg') }}" alt="Photos trois premiers {{playmo}}">
+                <p>Depuis 40 ans : 198 couleurs on étét créées dans la gamme Playmobil®. En combinant les couleurs et les matières plastiques, on obtient 2 835 formules possibles !</p>
+                <p>Depuis 1974, 4 659 modèles de figurines on été créées. Environ 2,8 milliards de petits personnages fabriqués ! Ils ont plus de 400 coupes de cheveux différentes !</p>
+                <p>En 40 ans, cette figurine est devenu un jouet culte ! Il est protégé par un copyright, la figurine ne peut être contrefaite. Peu de copies ont d'ailleurs été réalisées jusqu'à présent.</p>
+                <p>En 2014, un nouveau record de vente mondial marque l'année des 40 ans de Playmobil®. Pour la première fois de son histoire, les ventes atteignent 552 millions d'euros !</p>
+                <p>En 1974 le monde des Playmobil® n'est peuplé que de garçons ! Ce n'est que deux plus tard que quelques personnages féminin entrent dans la gamme. Leur coupe de cheveux et une amorce de robe sont les deux seuls signes de leur féminité.</p>
+                <img class="filles" src="{{ asset('images/pages/filles.jpg') }}" alt="Photos premiers personnages féminins {{playmo}}">
+                <p>Le nombre de figurines vendues depuis 40 ans, avoisine les 3 milliards. Si elles se donnaient toutes la main, elles pourraient faire trois fois le tour de la terre !</p>
+            </div>
+
+            <div>
+                <div class="paraIII">
+                    <h2 class="title_para para3">Ce n'est pas la taille qui compte !...</h2>
+                    <p>Un Playmobil® mesure 7,5 cm exactement ! (ce qui correspond à un homme de 1,80 m environ)</p>
+                    <p>Hans Beck a étudié miticuleusement la hauteur de son personnage avant de s'arrêter sur ces 7,5 cm. Une taille parfaite : tient dans une main d'enfant, se glisse dans la poche et peut être néanmoins être accéssoirisé.</p>
+                    <p>Les figurines enfants sont créés en 1981 et mesurent 5,5 cm. Trois ans plus tard les figurines bébés mesurent 3,5 cm.</p>
+                    <p>La taille de la figurine originale est un des éléments à n'avoir  jamais évolué. Un chiffre d'or, véritable ADN de la marque.</p>
+                </div>
+                
+                <img class="familly" src="{{ asset('images/pages/famille.jpg') }}" alt="Photos famille {{playmo}}">
+            </div>
+  
+		</div>
+	</main>
+
 {% endblock %}

@@ -28,6 +28,7 @@
 					<th>Nom Collectionneur</th>
 					<th>Prénom</th>
 					<th>N° id</th>
+					<th>Nbre Photos</th>
 					<th>Consulter</th>
 					<th>Modifier</th>
 					<th>Supprimer</th>
@@ -42,6 +43,7 @@
 						<td>{{page.user.name}}</td>
 						<td>{{page.user.firstname}}</td>
 						<td>{{page.user.id}}</td>
+						<td>{{ page.images|length }}</td>
 						<td>
 							<a href="{{ path('app_admin_page_show', {id: page.id}) }}" title="Consulter">
 								<i class="far fa-eye action_crud"></i>

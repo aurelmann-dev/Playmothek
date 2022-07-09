@@ -27,14 +27,14 @@ class PagesType extends AbstractType
             "Instagram" => "Instagram",
             "Twitter" => "Twitter",
             "Youtube" => "Youtube",
+            "A précisier" => "Plus tard"
         ];
 
         $builder
-            ->add('presentation', CKEditorType::class)
+            ->add('presentation', CKEditorType::class, [])
             ->add('networks', ChoiceType::class, [
                 'choices' => $networks,
                 'expanded' => true,
-                // 'multiple' => true
             ])
             ->add('user', EntityType::class, [
                 'class' => Users::class,
@@ -66,10 +66,11 @@ class PagesType extends AbstractType
             #~Field Images not mapped BDD~
             ->add('images', FileType::class,[
                 'data_class' => null,
+                'required' => false,
                 'label' => false,
                 'multiple' => true,
                 'mapped' => false,
-                // 'contraints' => [
+                // 'constraints' => [
                 //     new File([
                 //         'maxSize' => '10M',
                 //         'mimeTypes' => [

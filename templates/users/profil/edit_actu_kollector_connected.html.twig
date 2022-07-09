@@ -4,31 +4,56 @@
 {% endblock %}
 
 {% block body %}
-	<main>
+	<main class="main_register">
+
+		<div class="container_actuality">
 
 
-		MODIFICATION ACTU COLLECTIONNEUR
+			<div>
+				<h3>Mise à jour de votre actualité</h3>
+			</div>
 
-		<div>
-			<p>Modif Page de
-				{{ app.user.firstname}}
-				{{ app.user.name}}</p>
-		</div>
+			<div>
+				{{ form_start(form)}}
 
-		<div>
-			{{ form(form)}}
+				{{ form_row(form.networks, {label: 'Réseaux sociaux : '})}}
+				<br>
+				{{ form_row(form.presentation, {label: 'Modifier votre histoire : '})}}
+				<br>
+				{{ form_row(form.images, {label: 'Ajouter des photos : '})}}
 
-				{# {{app.user.page.presentation}} #}
+				{{ form_end(form)}}
 
-				{% for image in app.user.page.images %}
-					<form action="{{ path('app_kollector_connected_delete_img', {id: image.id}) }}" method="POST">
-						<input type="hidden" name="token" value="{{ csrf_token('delete-image') }}">
-						{{image.id}}
-						<img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
-						<button type="submit">Supprimer</button>
-					</form>
-				{% endfor %}
+				<div>
+					<h3>Gérer votre galerie</h3>
+
+
+					<div class="galery_gest">
+
+						{% for image in app.user.page.images %}
+
+							<div class="list_img">
+								<form action="{{ path('app_kollector_connected_delete_img', {id: image.id}) }}" method="POST">
+									<p>Photo N°
+										{{image.id}}</p>
+									<input type="hidden" name="token" value="{{ csrf_token('delete-image') }}">
+									<img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+									<br>
+									<button class="btn_play btn_suppr" type="submit">Supprimer la photo N°
+										{{image.id}}</button>
+								</form>
+
+							</div>
+						{% endfor %}
+
+					</div>
+				</div>
+
 
 			</div>
-		</main>
-	{% endblock %}
+
+		</div>
+
+
+	</main>
+{% endblock %}
