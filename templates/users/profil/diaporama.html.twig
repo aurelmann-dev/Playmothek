@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Users
+{% block title %}{{name_site}} | Diaporama Kollector
 {% endblock %}
 
 {% block body %}
@@ -9,13 +9,18 @@
 		<div class="container_diapo">
 			<div
 				class="album">
-				{# {{dump(images)}} #}
+				{# {{dump(page.images)}} #}
+
 				{% for image in images %}
 					<img src="{{ asset('/upload_directory/' ~ image.title)}}" alt="Image de galerie collectionneur">
+					
 				{% endfor %}
 			</div>
-			<p>{{ knp_pagination_render(images) }} sur {{ page.images|length }} page(s)</p>
+			{# {% for image in page.images %} #}
+				
 
+			<p>{{ knp_pagination_render(images) }} sur {{ page.images|length }} page(s)</p>
+	
 		</div>
 
 		<div class="line_byn">

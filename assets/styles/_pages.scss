@@ -39,28 +39,13 @@
     padding: 1em;
 }
 
-.img_diaorama {
-    @include flex;
-
-    .img_1 {
-        height: 400px;
-        width: 400px;
-        border: 1px solid $grun;
-        background-image: url(/public/images/diorama/cirque.jpg);
-        background-position: bottom;
-        object-fit: cover;
-        box-shadow: 1px 1px 2px gray;
-        border-radius: 20px;
-        margin-right: 2em;
-    }
-}
-
 
 /*  .--.    .-'.   ..--.     
 :::::.\:: OFFICIAL MARK ::/:::
 '      `--'     `.-' */
 .main_officiel {
     background-color: $playmo;
+
     .container_officiel {
         background-color: white;
         margin-top: 40px;
@@ -119,9 +104,10 @@
 /*  .--.    .-'.   ..--.     
 :::::.\:: CUSTOM =  MAINTENANCE ::/:::
 '      `--'     `.-' */
-.main_custom{
+.main_custom {
     background-color: $violett;
-    .container_custom{
+
+    .container_custom {
         background-color: white;
         margin-top: 40px;
         margin: auto;
@@ -131,10 +117,11 @@
         border-radius: 20px;
         box-shadow: 2px 2px 10px black;
 
-        .title_trvx{
+        .title_trvx {
             color: $bold;
         }
-        .travaux{
+
+        .travaux {
             width: 800px;
         }
     }

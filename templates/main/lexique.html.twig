@@ -1,45 +1,115 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{name_site}} | Accueil
+{% block title %}
+	{{name_site}}
+	| Lexique
 {% endblock %}
 
 {% block body %}
-<main>
+	<main>
 
-    <div class="title_lexique">
-        <h2>Bienvenue dans la partie lexique !</h2>
-        <img src="{{ asset('images/pages/lexique.png') }}" alt="Photo {{playmo}} écolière">
-    </div>
+		<div class="title_lexique">
+			<h2>Bienvenue dans la partie lexique !</h2>
+			<img src="{{ asset('images/pages/lexique.png') }}" alt="Photo {{playmo}} écolière">
+		</div>
 
-    <p class="speech">Voici un petit condensé du jargon de ces petits Klicky ! Commençons donc par celui-ci !</p>
+		<p class="speech">Voici un petit condensé du jargon de ces petits Klickys ! Commençons donc par celui-ci !</p>
 
-    <div class="definition">
-        <p class="word">Klicky(s)  :</p>
-        <blockquote>
-        <p>Avant d’être Playmobil… il étaient klickys !</p>
-        <p>Les Klickys sont en plastique particulièrement résistant, dotés de quatre articulations : ils peuvent  tourner la tête, lever les bras et se pencher en avant.
-        Les mains sont fixes !</p>
-        <p>En France, les premières générations de personnages Playmobil arrivent sur le marché sous l'appellation Klickys.</p>
-        </blockquote>
-    </div>
+		<div class="definition">
+			<p class="word">Klicky(s)  :</p>
+			<blockquote>
+				<p>Avant d’être Playmobil… il étaient klickys !</p>
+				<p>Les Klickys sont en plastique particulièrement résistant, dotés de quatre articulations : ils peuvent  tourner la tête, lever les bras et se pencher en avant.
+															        Les mains sont fixes !</p>
+				<p>En France, les premières générations de personnages Playmobil arrivent sur le marché sous l'appellation Klickys.</p>
+			</blockquote>
+		</div>
 
-    <div class="definition">
-        <p class="word">Diorama(s) :</p>
-        <blockquote>
-        <p>Le diorama est un système de présentation par mise en situation ou mise en scène d'un modèle d'exposition,
-        le faisant apparaître dans son environnement habituel.</p>
-        <p>C'est un mode de reconstitution d'une scène en volume.</p>
-        </blockquote>
+		<div class="definition">
+			<p class="word">Diorama(s) :</p>
+			<blockquote>
+				<p>Le diorama est un système de présentation par mise en situation ou mise en scène d'un modèle d'exposition,
+															        le faisant apparaître dans son environnement habituel.</p>
+				<p>C'est un mode de reconstitution d'une scène en volume.</p>
+			</blockquote>
 
-        <p class="exemple">Voici des exemples de dioramas :</p>
+			<div class="exemple">
+				<p>Voici des exemples de dioramas :</p>
+				<p>(dans l'ordre : d'un cirque, d'un bureau de poste et d'une garden party)</p>
+			</div>
 
-            <div class="img_diaorama">
-                <div class="img_1"></div>
-                <div class="img_2">photo 2</div>
-                <div class="img_3">photo 3</div>
-            </div>
-    </div>
+			<div class="img_diaorama">
+				<a href="{{ path('app_diorama_cirque') }}" target="_blanck">
+					<img class="diorama" src="{{ asset('images/diorama/cirque.jpg') }}" alt="Photo de diorama {{playmo}}">
+				</a>
+
+				<a href="{{ path('app_diorama_poste') }}" target="_blanck">
+					<img class="diorama" src="{{ asset('images/diorama/poste.jpg') }}" alt="Photo de diorama {{playmo}}">
+				</a>
+
+				<a href="{{ path('app_diorama_ville') }}" target="_blanck">
+					<img class="diorama" src="{{ asset('images/diorama/ville.jpg') }}" alt="Photo de diorama {{playmo}}">
+				</a>
+
+			</div>
+
+			<div class="speech">
+				<p>Cliquez sur les photos pour les ouvrir dans un nouvel onglet, et admirez de prés tous ces petits détails !</p>
+			</div>
 
 
-</main>
+			<p class="word">Unboxing :</p>
+			<blockquote>
+				<p>Ce terme anglais, qui signifie « déballage » en français.</p>
+				<p>Il désigne une tendance incontournable sur les réseaux sociaux qui vise à déballer, en vidéo, un produit et à en donner ses premières impressions dès l'ouverture du colis</p>
+			</blockquote>
+
+			<div class="pizza">
+				<img src="{{ asset('images/pages/pizza.jpg') }}" alt="Photo pizzaria {{playmo}}">
+			</div>
+
+
+			<div class="exemple">
+				<p>Imaginons qu’un jour vous proposiez à un collectionneur de vous racheter les
+					{{playmo}}
+					de vos enfants...ce dernier va certainement vous parler de MIB ou MIP !!</p>
+				<p>Ce sont en fait, des abréviations très simples à comprendre. Pour mieux décrire l'état d'un objet, les collectionneurs du monde entier se sont mis d'accord sur certains termes techniques.</p>
+			</div>
+			<br>
+			<p class="word">MISB/P  : Mint In Sealed Box/Package</p>
+			<blockquote>
+				<p>Comprenez : neuf en boîte scellée. C'est plutôt explicite !</p>
+			</blockquote>
+
+			<p class="word">NRFB   : Never Removed From Box</p>
+			<blockquote>
+				<p>Comprenez : jamais retiré de la boîte.</p>
+				<p>L'emballage n'a jamais été ouvert et est, par exemple, toujours emballé sous film rétractable ou scellé avec le ruban adhésif d'origine.</p>
+			</blockquote>
+
+			<p class="word">MIMB/P   : Mint In Mint Box/Package</p>
+			<blockquote>
+				<p>Comprenez : neuf en boîte neuve .</p>
+				<p>L'article et la boîte ouverte sont en parfait état. Toutes les pièces sont incluses.</p>
+			</blockquote>
+
+			<p class="word">MIB/P   : Mint In Box/Package</p>
+			<blockquote>
+				<p>Comprenez : neuf en boîte.</p>
+				<p>L'objet est en parfait état avec boite. Tous les accessoires sont inclus. Il n'y a aucune information sur l'état de la boîte et il se peut bien qu'elle soit défectueuse.</p>
+			</blockquote>
+
+			<p class="word">LOOSE
+			</p>
+			<blockquote>
+				<p>
+					L'article est en vrac et en parfait état, mais il manque la boîte. Toutes les pièces sont incluses.</p>
+			</blockquote>
+
+			<div class="wolf">
+				<img class="wolfgang" src="{{ asset('images/pages/wolfgang.jpg') }}" alt="Photo Wolfgang {{playmo}}">
+			</div>
+
+		</div>
+	</main>
 {% endblock %}

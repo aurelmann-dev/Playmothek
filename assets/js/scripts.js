@@ -13,5 +13,3 @@ function scrollNavbar() {
         navbar.classList.remove("sticky");
     }
 }
-
-

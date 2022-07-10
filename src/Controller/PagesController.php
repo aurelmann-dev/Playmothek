@@ -38,12 +38,12 @@ class PagesController extends AbstractController
     public function kollectorView(Pages $page, Request $request, ManagerRegistry $doctrine, PaginatorInterface $paginator): Response
     {
         $em = $doctrine->getManager();
-        $imgPage = $em->getRepository(Images::class)->findBy([]);
-        $imgPage = $paginator->paginate(
-            $imgPage,
-            $request->query->getInt('page', 1),
-            6
-        );
+        // $imgPage = $em->getRepository(Images::class)->findBy([]);
+        // $imgPage = $paginator->paginate(
+        //     $imgPage,
+        //     $request->query->getInt('page', 1),
+        //     6
+        // );
 
         // ~Comments~
         $comment = new Comments;;
@@ -87,12 +87,15 @@ class PagesController extends AbstractController
     public function kollectorDiapo(Pages $page, Request $request, PaginatorInterface $paginator, ImagesRepository $imagesRepository): Response
     {
 
+        // $idpage = $page->getId();
+        // dd($idpage);
+
         $imgPage = $imagesRepository->findAll();
-
-        // dd($imgPage);
-
+       
+    //    dd($idpage);
+       
         $images = $paginator->paginate(
-            $imgPage,
+            $imgPage = $page->getImages(),
             $request->query->getInt('page', 1),1
         );
 // dd($images);
@@ -100,6 +103,7 @@ class PagesController extends AbstractController
         return $this->render('users/profil/diaporama.html.twig', [
             'page' => $page,
             'images' => $images,
+            ' $imgPage' => $imgPage
         ]);
     }
 }
